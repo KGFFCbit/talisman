@@ -1,0 +1,418 @@
+/* Hallmark · macrostructure: Stat-Led · H4 knobs: number-style=monospace, qualifier=below, secondary-stats=none
+ * theme: custom · vibe: "black lacquer, hand-stamped gold, shrine talisman, quietly funny" · paper: oklch(95% 0.014 85) · accent: oklch(70% 0.14 85)
+ * display: Fraunces · body: Source Serif 4 · outlier: Geist Mono · axes: light / roman-serif / chromatic-amber (~85°)
+ * nav: N6 Newspaper masthead · footer: Ft6 Letter close · studied: no · context: user-provided (brand logo) · v1.0
+ */
+
+@import url("tokens.css");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,350;0,9..144,600;0,9..144,700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Geist+Mono:wght@400;500&display=swap");
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+
+html {
+  background: var(--color-paper);
+}
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+img { max-width: 100%; display: block; }
+
+a {
+  color: inherit;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 0;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+p { margin: 0; }
+
+.measure { max-width: var(--measure); }
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.container {
+  max-width: 78rem;
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+}
+
+/* ---------- Motion ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: reveal var(--dur-long) var(--ease-out) forwards;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+@keyframes reveal { to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 150ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 150ms !important;
+  }
+  .reveal { animation: reveal-reduced 150ms linear forwards; }
+  @keyframes reveal-reduced { to { opacity: 1; transform: none; } }
+}
+
+/* ---------- Nav — N6 Newspaper masthead ---------- */
+
+.nav-mast {
+  display: grid;
+  gap: var(--space-2xs);
+  padding: var(--space-lg) var(--page-gutter) 0;
+  text-align: center;
+}
+
+.mast-line {
+  font-family: var(--font-body);
+  font-variant: small-caps;
+  letter-spacing: 0.1em;
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+}
+
+.mast-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  text-decoration: none;
+  color: var(--color-ink);
+}
+
+.mast-logo {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+}
+
+.mast-name {
+  font-family: var(--font-outlier);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.mast-nav {
+  margin-top: var(--space-sm);
+}
+
+.mast-nav ul {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md) var(--space-lg);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mast-nav a {
+  text-decoration: none;
+  font-size: var(--text-sm);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  padding-block: var(--space-2xs);
+  border-bottom: var(--rule-hair) solid transparent;
+  transition: border-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out);
+}
+.mast-nav a:hover,
+.mast-nav a[aria-current="page"] {
+  border-color: var(--color-accent);
+  color: var(--color-ink);
+}
+
+.mast-menu { display: none; }
+
+.mast-rule.double {
+  border: 0;
+  border-top: var(--rule-hair) solid var(--color-rule);
+  border-bottom: var(--rule-hair) solid var(--color-rule);
+  height: 4px;
+  margin: var(--space-lg) 0 0;
+}
+
+@media (max-width: 40rem) {
+  .mast-nav { display: none; }
+  .mast-menu {
+    display: block;
+    margin-top: var(--space-sm);
+  }
+  .mast-menu summary {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-ink);
+    cursor: pointer;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .mast-menu ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    list-style: none;
+    padding: 0;
+    margin: var(--space-sm) 0 0;
+  }
+  .mast-menu a {
+    text-decoration: none;
+    font-size: var(--text-sm);
+    padding-block: var(--space-2xs);
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .mast-name { font-size: clamp(1.35rem, 6vw, 1.75rem); }
+}
+
+/* ---------- Hero — Stat-Led ---------- */
+
+.hero-stat {
+  padding: var(--space-3xl) var(--page-gutter) var(--space-2xl);
+  text-align: center;
+}
+
+.figure {
+  font-family: var(--font-outlier);
+  font-weight: 500;
+  font-size: var(--text-figure);
+  line-height: 0.85;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+.figure .unit {
+  font-size: 0.28em;
+  font-family: var(--font-body);
+  font-style: italic;
+  margin-inline-start: var(--space-sm);
+  color: var(--color-ink-2);
+}
+
+.qualifier {
+  margin-top: var(--space-md);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  max-width: 32ch;
+  margin-inline: auto;
+  color: var(--color-ink-2);
+}
+
+.hero-stat .cta-outline { margin-top: var(--space-xl); }
+
+/* ---------- CTA — C1 outlined chip ---------- */
+
+.cta-outline {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-lg);
+  border: var(--rule-hair) solid var(--color-ink);
+  color: var(--color-ink);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  transition: transform var(--dur-micro) var(--ease-out),
+              background-color var(--dur-short) var(--ease-out),
+              color var(--dur-short) var(--ease-out);
+}
+.cta-outline:hover {
+  transform: translateY(-1.5px);
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+.cta-outline:active { transform: translateY(0); }
+
+.link-arrow {
+  display: inline-block;
+  text-decoration: underline;
+  text-decoration-color: var(--color-rule);
+  text-underline-offset: 3px;
+  color: var(--color-ink);
+  transition: text-decoration-color var(--dur-short) var(--ease-out);
+}
+.link-arrow:hover { text-decoration-color: var(--color-accent); }
+
+/* ---------- Sections & rhythm ---------- */
+
+.rule-thick {
+  border: 0;
+  border-top: 3px solid var(--color-ink);
+  margin: 0;
+}
+
+section { padding-block: var(--space-3xl); }
+section + section { border-top: var(--rule-hair) solid var(--color-rule); }
+
+.section--tight { padding-block: var(--space-2xl); }
+
+/* S2 — Hanging head */
+.head-hanging {
+  margin-bottom: var(--space-xl);
+}
+.head-hanging h2 {
+  font-size: var(--text-3xl);
+  max-width: 22ch;
+}
+
+/* S4 — Inline, no break */
+.head-inline {
+  font-family: var(--font-body);
+  font-variant: small-caps;
+  letter-spacing: 0.08em;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  margin-bottom: var(--space-sm);
+}
+
+/* S5 — Bottom anchored */
+.head-bottom { display: flex; flex-direction: column; }
+.head-bottom .head-bottom__label {
+  order: 2;
+  margin-top: var(--space-lg);
+  font-size: var(--text-2xl);
+  font-family: var(--font-display);
+}
+.head-bottom .head-bottom__body { order: 1; }
+
+.prose p + p { margin-top: var(--space-md); }
+.prose { max-width: var(--measure); }
+
+/* ---------- Card grid — F6 adapted for recipes ---------- */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-xl) var(--space-lg);
+  margin-top: var(--space-xl);
+}
+@media (max-width: 60rem) {
+  .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 40rem) {
+  .card-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+.card {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.card__media {
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(160deg, var(--color-paper-2), var(--color-paper-3));
+  border: var(--rule-hair) solid var(--color-rule);
+  display: grid;
+  place-items: center;
+  color: var(--color-muted);
+  font-family: var(--font-outlier);
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.card__title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+}
+
+.card__meta {
+  font-size: var(--text-sm);
+  color: var(--color-ink-2);
+}
+
+.badge {
+  display: inline-block;
+  font-family: var(--font-outlier);
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  border: var(--rule-hair) solid var(--color-rule);
+  padding: var(--space-3xs) var(--space-xs);
+}
+
+/* ---------- Talisman ornament — Tier A pure CSS ---------- */
+
+.talisman-mark {
+  width: 5rem;
+  height: 6.5rem;
+  margin-inline: auto;
+  position: relative;
+  border: 3px solid var(--color-ink);
+  border-radius: 50% 50% 8% 8%;
+  background:
+    linear-gradient(var(--color-accent), var(--color-accent)) center / 2px 60% no-repeat,
+    linear-gradient(var(--color-accent), var(--color-accent)) center / 60% 2px no-repeat;
+}
+.talisman-mark::after {
+  content: "";
+  position: absolute;
+  inset: 14%;
+  border: var(--rule-hair) solid var(--color-accent);
+  border-radius: 50%;
+}
+
+/* ---------- Disclaimer / note blocks ---------- */
+
+.note {
+  border-inline-start: 3px solid var(--color-accent);
+  padding-inline-start: var(--space-md);
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+  max-width: var(--measure);
+}
+
+/* ---------- Footer — Ft6 Letter close ---------- */
+
+.foot-letter {
+  padding: var(--space-2xl) var(--page-gutter) var(--space-3xl);
+  max-width: 60ch;
+  margin-inline: auto;
+  text-align: center;
+}
+.foot-letter__close {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--text-lg);
+  line-height: 1.4;
+}
+.foot-letter__sign {
+  font-style: normal;
+  font-weight: 600;
+}
+.foot-letter__ps {
+  font-size: var(--text-sm);
+  margin-top: var(--space-md);
+  color: var(--color-muted);
+}
+.foot-letter__copy {
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+  margin-top: var(--space-lg);
+}

@@ -1,0 +1,79 @@
+/* Hallmark tokens · KGFFC custom theme
+ * vibe: "black lacquer, hand-stamped gold, shrine talisman, quietly funny"
+ * paper: oklch(95% 0.014 85) · accent: oklch(70% 0.14 85)
+ * axes: light / roman-serif / chromatic-amber (~85°)
+ */
+
+:root {
+  /* Colour — paper */
+  --color-paper:    oklch(95% 0.014 85);
+  --color-paper-2:  oklch(92% 0.016 85);
+  --color-paper-3:  oklch(88% 0.018 85);
+
+  /* Colour — ink */
+  --color-ink:      oklch(17% 0.012 85);
+  --color-ink-2:    oklch(38% 0.012 85);
+
+  /* Colour — supporting greys */
+  --color-rule:     oklch(78% 0.016 85);
+  --color-rule-2:   oklch(85% 0.014 85);
+  --color-muted:    oklch(48% 0.012 85);
+  --color-neutral:  oklch(42% 0.012 85);
+
+  /* Colour — accent (gold, from the KGFFC emblem) */
+  --color-accent:      oklch(70% 0.14 85);
+  --color-accent-ink:  oklch(17% 0.012 85);
+  --color-focus:       oklch(66% 0.19 85);
+
+  /* Type */
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-body:    "Source Serif 4", ui-serif, Georgia, serif;
+  --font-outlier: "Geist Mono", ui-monospace, "SF Mono", monospace;
+
+  --text-xs:   0.64rem;
+  --text-sm:   0.8rem;
+  --text-base: 1rem;
+  --text-md:   1.25rem;
+  --text-lg:   1.5625rem;
+  --text-xl:   1.9531rem;
+  --text-2xl:  2.4414rem;
+  --text-3xl:  3.0518rem;
+  --text-4xl:  3.8147rem;
+  --text-display: clamp(2.75rem, 5vw + 1rem, 5.25rem);
+  --text-figure:  clamp(5rem, 22vw, 11rem);
+
+  /* Space — 4pt scale */
+  --space-3xs: 0.125rem;
+  --space-2xs: 0.25rem;
+  --space-xs:  0.5rem;
+  --space-sm:  0.75rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 9rem;
+
+  /* Motion */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:     cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long:  420ms;
+
+  /* Structure */
+  --rule-hair: 1px;
+  --radius-sm: 2px;
+  --page-gutter: clamp(1.25rem, 4vw, 3rem);
+  --measure: 65ch;
+
+  /* Z-index */
+  --z-base:     1;
+  --z-raised:   10;
+  --z-dropdown: 100;
+  --z-sticky:   200;
+  --z-modal:    400;
+  --z-toast:    500;
+  --z-tooltip:  600;
+}

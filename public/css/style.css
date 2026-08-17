@@ -95,16 +95,18 @@ p { margin: 0; }
 
 .mast-brand {
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  gap: var(--space-sm);
+  gap: var(--space-xs);
   text-decoration: none;
   color: var(--color-ink);
 }
 
 .mast-logo {
-  width: 4.5rem;
-  height: 4.5rem;
+  width: clamp(5.5rem, 14vw, 8rem);
+  height: clamp(5.5rem, 14vw, 8rem);
   border-radius: 50%;
+  box-shadow: 0 0 0 var(--rule-hair) var(--color-rule);
 }
 
 .mast-name {
@@ -188,7 +190,6 @@ p { margin: 0; }
     align-items: center;
   }
   .mast-name { font-size: clamp(1.35rem, 6vw, 1.75rem); }
-  .mast-logo { width: 3.25rem; height: 3.25rem; }
 }
 
 /* ---------- Hero — Stat-Led ---------- */
@@ -196,6 +197,15 @@ p { margin: 0; }
 .hero-stat {
   padding: var(--space-3xl) var(--page-gutter) var(--space-2xl);
   text-align: center;
+}
+
+.hero-seal {
+  width: clamp(4.5rem, 10vw, 5.75rem);
+  height: clamp(4.5rem, 10vw, 5.75rem);
+  border-radius: 50%;
+  margin-inline: auto;
+  margin-bottom: var(--space-lg);
+  display: block;
 }
 
 .figure {

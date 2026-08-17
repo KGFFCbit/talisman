@@ -102,8 +102,8 @@ p { margin: 0; }
 }
 
 .mast-logo {
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 4.5rem;
+  height: 4.5rem;
   border-radius: 50%;
 }
 
@@ -188,6 +188,7 @@ p { margin: 0; }
     align-items: center;
   }
   .mast-name { font-size: clamp(1.35rem, 6vw, 1.75rem); }
+  .mast-logo { width: 3.25rem; height: 3.25rem; }
 }
 
 /* ---------- Hero — Stat-Led ---------- */

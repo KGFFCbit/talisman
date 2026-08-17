@@ -313,6 +313,14 @@ section + section { border-top: var(--rule-hair) solid var(--color-rule); }
 
 .prose p + p { margin-top: var(--space-md); }
 .prose { max-width: var(--measure); }
+.prose ul {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-md) 0;
+  display: grid;
+  gap: var(--space-xs);
+}
+.prose ul + p { margin-top: var(--space-md); }
 
 /* ---------- Card grid — F6 adapted for recipes ---------- */
 

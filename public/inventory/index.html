@@ -47,27 +47,21 @@
       <h2>GlutenFreeInventory</h2>
     </div>
     <div class="prose">
-      <p>A read-only look at one guardian's gear in Destiny 2. Nothing here can equip, move or change an item. The page shows a saved snapshot and only calls Bungie when the owner refreshes it.</p>
+      <p>A read-only look at one guardian's gear in Destiny 2. Nothing here can equip, move or change an item. The page shows a saved snapshot and only calls Bungie when you press Refresh.</p>
+    </div>
+
+    <div class="inv-controls">
+      <button id="refresh" class="cta-outline" type="button">Refresh inventory</button>
+      <span id="status" role="status"></span>
     </div>
 
     <nav id="tabs" class="inv-tabs" aria-label="Characters"></nav>
-    <p id="status" role="status"></p>
     <div id="inventory"><p class="empty">Loading guardian…</p></div>
-
-    <details class="inv-owner">
-      <summary>Owner refresh</summary>
-      <div class="inv-controls">
-        <label>Bungie Name <input id="bungieName" placeholder="Name#1234" autocomplete="off"></label>
-        <label>API key <input id="apiKey" type="password" placeholder="kept in this browser only" autocomplete="off"></label>
-        <button id="refresh" class="cta-outline" type="button">Refresh inventory</button>
-      </div>
-    </details>
 
     <p class="inv-credit">
       Destiny 2 data and images &copy; Bungie, Inc.; this site is not affiliated with or endorsed by Bungie.
-      Built on the <a href="https://github.com/Bungie-net/api">Bungie.net API</a> and
-      <a href="https://github.com/DestinyItemManager/bungie-api-ts">bungie-api-ts</a>, with item styling conventions from
-      <a href="https://github.com/DestinyItemManager/DIM">DIM</a> (MIT).
+      Built on the <a href="https://github.com/Bungie-net/api">Bungie.net API</a> and its manifest definitions,
+      with item styling conventions from <a href="https://github.com/DestinyItemManager/DIM">DIM</a> (MIT).
     </p>
   </section>
 </main>
@@ -78,6 +72,6 @@
 </footer>
 
 <script src="/js/main.js"></script>
-<script type="module" src="app.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

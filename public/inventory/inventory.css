@@ -8,6 +8,11 @@
 #status { font-family: var(--font-outlier); font-size: var(--text-sm); color: var(--color-muted); }
 #status.err { color: oklch(48% 0.17 30); }
 
+.inv-pill { display: inline-block; font-family: var(--font-outlier); font-size: var(--text-sm); color: var(--color-ink-2); border: var(--rule-hair) solid var(--color-rule); border-radius: 999px; padding: var(--space-2xs) var(--space-md); text-decoration: none; }
+.inv-pill::before { content: ""; display: inline-block; width: .6em; height: .6em; border-radius: 50%; background: var(--color-muted); margin-right: .5em; }
+.inv-pill.ok::before { background: oklch(72% 0.19 150); } .inv-pill.fail::before { background: oklch(62% 0.23 27); }
+.inv-pill:hover { border-color: var(--color-accent); }
+.inv-fail { border: var(--rule-hair) solid oklch(62% 0.23 27); padding: var(--space-md); border-radius: var(--radius-sm); max-width: var(--measure); }
 .inv-owner { margin-top: var(--space-2xl); font-size: var(--text-sm); color: var(--color-muted); }
 .inv-owner summary { cursor: pointer; font-family: var(--font-outlier); }
 .inv-owner .inv-controls { margin-top: var(--space-md); }

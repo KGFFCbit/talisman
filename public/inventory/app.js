@@ -1,40 +1,40 @@
 // GlutenFreeInventory - read-only Destiny 2 inventory viewer.
 // The site ships a snapshot (snapshot.json) so every visitor sees the guardian immediately.
-// The Refresh button asks /api/inventory (which holds the Bungie key privately) for fresh data.
+// Refresh asks /api/inventory (which holds the Bungie key privately) for fresh data and
+// records a network trace of the attempt for the /status/ dashboard.
+import { refreshInventory, loadSnapshot, saveSnapshot } from "/shared/refresh.js";
+import { loadRuns, onRun } from "/shared/telemetry.js";
+
 const BUNGIE = "https://www.bungie.net";
-const SNAP_KEY = "gfi.snapshot";
 // Display order for equipped slots (DIM-style: weapons, armor, then the rest)
 const SLOT_ORDER = [1498876634, 2465295065, 953998645, 3448274439, 3551918588,
   14239492, 20886954, 1585787867, 4023194814, 2025709351, 284967655, 3284755031, 4274335291];
-
 // Slots we don't show: Vehicle (sparrows), Ghost, Ships, Emotes, Finishers, Emblems.
 const HIDDEN_BUCKETS = new Set([2025709351, 4023194814, 284967655, 1107761855, 3683254069, 4274335291]);
 
 const $ = (id) => document.getElementById(id);
-const store = {
-  get(k) { try { return localStorage.getItem(k); } catch { return null; } },
-  set(k, v) { try { localStorage.setItem(k, v); } catch { /* storage unavailable */ } },
-};
 const setStatus = (msg, err = false) => { const s = $("status"); s.textContent = msg; s.className = err ? "err" : ""; };
 const ESC = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ESC[c]);
 
-function loadSnapshot() { try { return JSON.parse(store.get(SNAP_KEY)); } catch { return null; } }
-function saveSnapshot(s) { store.set(SNAP_KEY, JSON.stringify(s)); }
+// The health pill mirrors the newest recorded run and links to the full dashboard.
+function updatePill(run = loadRuns()[0]) {
+  const pill = $("pill"); if (!pill) return;
+  if (!run) { pill.className = "inv-pill"; pill.textContent = "Network health: not checked yet, details →"; return; }
+  pill.className = `inv-pill ${run.ok ? "ok" : "fail"}`;
+  pill.textContent = run.ok
+    ? `Network health: green, last refresh ${run.clientMs} ms${run.cache === "HIT" ? " (cached)" : ""}, details →`
+    : `Network health: red, ${run.failedStep || "network"} failed (HTTP ${run.http || "none"}), details →`;
+}
 
 async function refresh() {
   $("refresh").disabled = true;
+  setStatus("Asking Bungie for the latest inventory...");
   try {
-    setStatus("Asking Bungie for the latest inventory...");
-    const res = await fetch("/api/inventory");
-    const fresh = await res.json().catch(() => ({}));
-    if (!res.ok) throw new Error(fresh.error || `Refresh failed (${res.status}).`);
-    // Keep definitions we already know about so a partial lookup never loses icons.
-    const prev = loadSnapshot();
-    fresh.defs.items = { ...(prev?.defs?.items || {}), ...fresh.defs.items };
-    fresh.defs.buckets = { ...(prev?.defs?.buckets || {}), ...fresh.defs.buckets };
-    saveSnapshot(fresh);
-    setStatus(fresh.complete ? "Updated just now." : "Updated (a few item icons are still loading; refresh again).");
+    const result = await refreshInventory();
+    updatePill(result.run);
+    if (!result.ok) return setStatus(`${result.error} Open the network dashboard to see where it broke.`, true);
+    setStatus(result.snapshot.complete ? "Updated just now." : "Updated (a few item icons are still loading; refresh again).");
     render();
   } catch (e) { console.error(e); setStatus(e.message, true); }
   finally { $("refresh").disabled = false; }
@@ -74,6 +74,8 @@ function render() {
 
 $("tabs").addEventListener("click", (e) => { const b = e.target.closest("button[data-id]"); if (b) { activeChar = b.dataset.id; render(); } });
 $("refresh").addEventListener("click", refresh);
+onRun(updatePill);            // another tab (e.g. the dashboard) refreshed
+updatePill();
 
 // Use the shipped snapshot unless this browser already holds a newer refresh.
 async function loadShipped() {
@@ -88,5 +90,5 @@ async function loadShipped() {
 render();
 loadShipped().then(() => {
   render();
-  if (!loadSnapshot()) $("inventory").innerHTML = '<p class="empty">No snapshot available yet.</p>';
+  if (!loadSnapshot()) $("inventory").innerHTML = '<p class="empty">No snapshot available yet. Check the <a href="/status/">network dashboard</a>.</p>';
 });

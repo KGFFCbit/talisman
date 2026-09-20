@@ -1,0 +1,108 @@
+﻿{
+    "schema":  1,
+    "generatedAt":  "2026-09-20T22:02:27.3424390Z",
+    "target":  "www.bungie.net",
+    "hops":  [
+                 {
+                     "n":  1,
+                     "ms":  0.5,
+                     "lossPct":  0,
+                     "kind":  "gateway",
+                     "label":  "Local gateway (your router)"
+                 },
+                 {
+                     "n":  2,
+                     "ms":  8,
+                     "lossPct":  0,
+                     "kind":  "private",
+                     "label":  "Private network hop"
+                 },
+                 {
+                     "n":  3,
+                     "ms":  7.7,
+                     "lossPct":  0,
+                     "kind":  "internet",
+                     "label":  "Internet hop"
+                 },
+                 {
+                     "n":  4,
+                     "ms":  10.3,
+                     "lossPct":  0,
+                     "kind":  "internet",
+                     "label":  "Internet hop"
+                 },
+                 {
+                     "n":  5,
+                     "ms":  8.7,
+                     "lossPct":  0,
+                     "kind":  "internet",
+                     "label":  "Internet hop"
+                 },
+                 {
+                     "n":  6,
+                     "ms":  9,
+                     "lossPct":  0,
+                     "kind":  "internet",
+                     "label":  "Internet hop"
+                 },
+                 {
+                     "n":  7,
+                     "ms":  10.3,
+                     "lossPct":  0,
+                     "kind":  "internet",
+                     "label":  "Internet hop"
+                 },
+                 {
+                     "n":  8,
+                     "ms":  16.3,
+                     "lossPct":  0,
+                     "kind":  "internet",
+                     "label":  "Internet hop"
+                 },
+                 {
+                     "n":  9,
+                     "ms":  15.7,
+                     "lossPct":  0,
+                     "kind":  "internet",
+                     "label":  "Internet hop"
+                 },
+                 {
+                     "n":  10,
+                     "ms":  15.3,
+                     "lossPct":  0,
+                     "kind":  "internet",
+                     "label":  "Internet hop"
+                 },
+                 {
+                     "n":  11,
+                     "ms":  15.7,
+                     "lossPct":  0,
+                     "kind":  "internet",
+                     "label":  "Internet hop"
+                 },
+                 {
+                     "n":  12,
+                     "ms":  16,
+                     "lossPct":  0,
+                     "kind":  "destination",
+                     "label":  "Destination"
+                 }
+             ],
+    "vpn":  {
+                "detected":  false,
+                "adapters":  0
+            },
+    "gateway":  {
+                    "ms":  0,
+                    "lossPct":  0
+                },
+    "dns":  {
+                "ms":  362
+            },
+    "summary":  {
+                    "hops":  12,
+                    "reached":  true,
+                    "timeouts":  0,
+                    "worstMs":  16.3
+                }
+}

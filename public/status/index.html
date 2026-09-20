@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Signal Check: find the broken hop in 30 seconds — KGFFC</title>
+<meta name="description" content="A live network outage meter for a real OAuth app: Cloudflare, Bungie, OAuth and the path in between, shown green or red on a map, with the owner and the fix named in one line.">
+<link rel="canonical" href="https://kgffc.net/status/">
+<link rel="icon" href="/logo.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KGFFC">
+<meta property="og:title" content="Signal Check: find the broken hop in 30 seconds">
+<meta property="og:description" content="A live outage meter for a real OAuth app. Cloudflare, Bungie, OAuth and the network path in green and red, with the owner and the fix named in one line.">
+<meta property="og:url" content="https://kgffc.net/status/">
+<meta property="og:image" content="https://kgffc.net/status/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A network map from a laptop to Bungie with each hop lit green, one amber, and the headline 'Find the broken hop in 30 seconds'">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Signal Check: find the broken hop in 30 seconds">
+<meta name="twitter:description" content="A live outage meter for a real OAuth app, built for support and sales engineers.">
+<meta name="twitter:image" content="https://kgffc.net/status/og.png">
+
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="status.css">
+</head>
+<body>
+
+<header class="nav-mast">
+  <p class="mast-line">Est. 2026 · Anti-Gluten Talismans</p>
+  <a class="mast-brand" href="/">
+    <img class="mast-logo" src="/logo.png" alt="KGFFC emblem — a rooster circled by hand-lettered gold" width="128" height="128">
+    <span class="mast-name">KGFFC</span>
+  </a>
+  <nav class="mast-nav" aria-label="Primary">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/recipes.html">Recipes</a></li>
+      <li><a href="/allergy.html">Gluten Info</a></li>
+      <li><a href="/talismans.html">Talismans</a></li>
+      <li><a href="/inventory/">Inventory</a></li>
+      <li><a href="/status/" aria-current="page">Status</a></li>
+    </ul>
+  </nav>
+  <details class="mast-menu">
+    <summary>Menu</summary>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/recipes.html">Recipes</a></li>
+      <li><a href="/allergy.html">Gluten Info</a></li>
+      <li><a href="/talismans.html">Talismans</a></li>
+      <li><a href="/inventory/">Inventory</a></li>
+      <li><a href="/status/" aria-current="page">Status</a></li>
+    </ul>
+  </details>
+  <hr class="mast-rule double" aria-hidden="true">
+</header>
+
+<main>
+  <section class="container sig">
+    <p class="eyebrow">KGFFC · Signal Check</p>
+    <h1>Find the broken hop in 30 seconds.</h1>
+    <p class="lede">A live outage meter for the <a href="/inventory/">GlutenFreeInventory</a> OAuth app. It checks Cloudflare, Bungie, OAuth and the path in between, then names the owner and the fix. It updates every time the inventory is refreshed.</p>
+
+    <div id="verdict" class="verdict" aria-live="polite"><div class="vbody"><h2>Checking…</h2></div></div>
+
+    <div class="toolbar">
+      <button id="btnLive" class="cta-outline" type="button">Run live check</button>
+      <button id="btnRefresh" class="cta-outline" type="button">Refresh inventory now</button>
+      <button id="btnCopy" class="cta-outline" type="button">Copy summary</button>
+      <a class="link-arrow" href="/inventory/">Back to the inventory →</a>
+      <span id="stamp" role="status"></span><span id="note" class="note"></span>
+    </div>
+
+    <div class="panel">
+      <div id="map" class="mapbox"></div>
+      <ol id="pathlist" class="pathlist"></ol>
+      <div id="detail" class="detail" aria-live="polite"></div>
+      <p class="legend"><span class="pill ok">✓ Green</span> healthy <span class="pill warn">! Amber</span> slow or degraded <span class="pill fail">✕ Red</span> broken <span class="pill unknown">– n/a</span> not applicable</p>
+    </div>
+
+    <h2>Every endpoint</h2>
+    <p class="hint">Green or red, with the HTTP status, the time, and whose problem it is.</p>
+    <div class="tablewrap"><table class="board"><thead><tr><th>Status</th><th>Check</th><th class="num">HTTP</th><th class="num">Time</th><th>Owner</th></tr></thead><tbody id="checks"></tbody></table></div>
+
+    <h2>Where the time went</h2>
+    <p class="hint">The last inventory refresh, step by step: your browser, our server, then Bungie.</p>
+    <div id="waterfall" class="waterfall"></div>
+    <div id="history" class="history"></div>
+
+    <h2>Traceroute from the affected computer</h2>
+    <p id="traceInfo" class="hint"></p>
+    <p class="hint">A website cannot run a real traceroute, so a small script does it on the machine that has the problem. It reports hops and milliseconds only: no IP addresses, no router names.</p>
+    <div class="agent">
+      <code>powershell -ExecutionPolicy Bypass -File agent\trace.ps1 -Out trace.json</code>
+      <button id="cmd" class="cta-outline" type="button" data-cmd="powershell -ExecutionPolicy Bypass -File agent\trace.ps1 -Out trace.json">Copy command</button>
+      <label class="filebtn">Load trace file <input id="traceFile" type="file" accept="application/json,.json"></label>
+    </div>
+
+    <h2>HTTP status codes</h2>
+    <p class="hint">What each number means and whose problem it usually is. Codes seen in the latest checks are highlighted.</p>
+    <div class="codebar">
+      <input id="codeQ" type="search" placeholder="Search a code or word (503, timeout, cloudflare)" aria-label="Search status codes">
+      <div id="codeTabs" class="tabs">
+        <button type="button" data-cls="all" aria-pressed="true">All</button><button type="button" data-cls="1xx" aria-pressed="false">1xx</button><button type="button" data-cls="2xx" aria-pressed="false">2xx</button><button type="button" data-cls="3xx" aria-pressed="false">3xx</button><button type="button" data-cls="4xx" aria-pressed="false">4xx</button><button type="button" data-cls="5xx" aria-pressed="false">5xx</button>
+      </div>
+    </div>
+    <div class="tablewrap"><table class="codes"><tbody id="codes"></tbody></table></div>
+
+    <p class="fine">Privacy: this page never shows IP addresses or router names. Locations are city-level Cloudflare edge codes only. Destiny 2 data and images © Bungie, Inc.; not affiliated with or endorsed by Bungie.</p>
+  </section>
+</main>
+
+<footer class="foot-letter">
+  <p class="foot-letter__close">Yours, warded and frying,<br><span class="foot-letter__sign">— KGFFC</span></p>
+  <p class="foot-letter__copy">© 2026 KGFFC.</p>
+</footer>
+
+<noscript><p class="container">This dashboard needs JavaScript.</p></noscript>
+<script src="/js/main.js"></script>
+<script type="module" src="main.js"></script>
+</body>
+</html>

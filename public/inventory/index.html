@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GlutenFreeInventory — KGFFC</title>
+<meta name="description" content="A read-only look at a Destiny 2 guardian's gear, pulled from Bungie on request.">
+<link rel="icon" href="/logo.png">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="inventory.css">
+</head>
+<body>
+
+<header class="nav-mast">
+  <p class="mast-line">Est. 2026 · Anti-Gluten Talismans</p>
+  <a class="mast-brand" href="/">
+    <img class="mast-logo" src="/logo.png" alt="KGFFC emblem — a rooster circled by hand-lettered gold" width="128" height="128">
+    <span class="mast-name">KGFFC</span>
+  </a>
+  <nav class="mast-nav" aria-label="Primary">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/recipes.html">Recipes</a></li>
+      <li><a href="/allergy.html">Gluten Info</a></li>
+      <li><a href="/talismans.html">Talismans</a></li>
+      <li><a href="/inventory/" aria-current="page">Inventory</a></li>
+    </ul>
+  </nav>
+  <details class="mast-menu">
+    <summary>Menu</summary>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/recipes.html">Recipes</a></li>
+      <li><a href="/allergy.html">Gluten Info</a></li>
+      <li><a href="/talismans.html">Talismans</a></li>
+      <li><a href="/inventory/" aria-current="page">Inventory</a></li>
+    </ul>
+  </details>
+  <hr class="mast-rule double" aria-hidden="true">
+</header>
+
+<main>
+  <section class="container inv">
+    <div class="head-hanging">
+      <h2>GlutenFreeInventory</h2>
+    </div>
+    <div class="prose">
+      <p>A read-only look at one guardian's gear in Destiny 2. Nothing here can equip, move or change an item. The page shows a saved snapshot and only calls Bungie when you press the button.</p>
+    </div>
+
+    <div class="inv-controls">
+      <label>Bungie Name <input id="bungieName" placeholder="Name#1234" autocomplete="off"></label>
+      <label>API key <input id="apiKey" type="password" placeholder="kept in this browser only" autocomplete="off"></label>
+      <button id="refresh" class="cta-outline" type="button">Refresh inventory</button>
+      <span id="status" role="status"></span>
+    </div>
+
+    <nav id="tabs" class="inv-tabs" aria-label="Characters"></nav>
+    <div id="inventory"><p class="empty">No snapshot yet. Press <b>Refresh inventory</b>.</p></div>
+
+    <p class="inv-credit">
+      Destiny 2 data and images &copy; Bungie, Inc.; this site is not affiliated with or endorsed by Bungie.
+      Built on the <a href="https://github.com/Bungie-net/api">Bungie.net API</a> and
+      <a href="https://github.com/DestinyItemManager/bungie-api-ts">bungie-api-ts</a>, with item styling conventions from
+      <a href="https://github.com/DestinyItemManager/DIM">DIM</a> (MIT).
+    </p>
+  </section>
+</main>
+
+<footer class="foot-letter">
+  <p class="foot-letter__close">Yours, warded and frying,<br><span class="foot-letter__sign">— KGFFC</span></p>
+  <p class="foot-letter__copy">© 2026 KGFFC.</p>
+</footer>
+
+<script src="/js/main.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>

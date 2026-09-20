@@ -152,4 +152,20 @@ $("tabs").addEventListener("click", (e) => { const b = e.target.closest("button[
 $("refresh").addEventListener("click", refresh);
 $("bungieName").value = store.get(NAME_KEY) || CONFIG.bungieName;
 $("apiKey").value = store.get(KEY_KEY) || "";
+
+// The site ships a snapshot (snapshot.json) so every visitor sees the guardian with no
+// key and no Bungie call. A newer owner refresh, kept in localStorage, takes precedence.
+async function loadShipped() {
+  try {
+    const res = await fetch("snapshot.json", { cache: "no-cache" });
+    if (!res.ok) return;
+    const shipped = await res.json();
+    const local = loadSnapshot();
+    if (!local || shipped.fetchedAt > local.fetchedAt) saveSnapshot(shipped);
+  } catch { /* offline or missing: fall back to whatever is stored */ }
+}
 render();
+loadShipped().then(() => {
+  render();
+  if (!loadSnapshot()) $("inventory").innerHTML = '<p class="empty">No snapshot available yet.</p>';
+});

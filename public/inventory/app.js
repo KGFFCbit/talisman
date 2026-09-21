@@ -61,15 +61,11 @@ function render() {
   const c = chars.find((x) => x.id === activeChar);
   const { defs } = snap;
   const rank = (b) => { const i = SLOT_ORDER.indexOf(b); return i < 0 ? SLOT_ORDER.length : i; };
-  const shown = (it) => !HIDDEN_BUCKETS.has(it.bucket);
-  const equipped = c.equipped.filter(shown).sort((a, b) => rank(a.bucket) - rank(b.bucket));
-  const groups = {};
-  for (const it of c.inventory.filter(shown)) (groups[defs.buckets[defs.items[it.hash]?.bucket] || "Other"] ||= []).push(it);
+  // Equipped gear only: the unequipped inventory is deliberately not shown.
+  const equipped = c.equipped.filter((it) => !HIDDEN_BUCKETS.has(it.bucket)).sort((a, b) => rank(a.bucket) - rank(b.bucket));
   $("inventory").innerHTML =
     `<p class="empty">${esc(snap.player)} &middot; snapshot from ${new Date(snap.fetchedAt).toLocaleString()}</p>
-     <h2>Equipped</h2><div class="grid equipped">${equipped.map((i) => itemHtml(i, defs)).join("")}</div>` +
-    Object.entries(groups).sort().map(([g, list]) =>
-      `<h2>${esc(g)}</h2><div class="grid">${list.map((i) => itemHtml(i, defs)).join("")}</div>`).join("");
+     <h2>Equipped gear</h2><div class="grid equipped">${equipped.map((i) => itemHtml(i, defs)).join("")}</div>`;
 }
 
 $("tabs").addEventListener("click", (e) => { const b = e.target.closest("button[data-id]"); if (b) { activeChar = b.dataset.id; render(); } });

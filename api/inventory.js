@@ -14,9 +14,9 @@ const { makeClient, BUNGIE_CODES } = require("./_lib/bungie");
 const { scrub } = require("./_lib/safe");
 
 const CLASS_NAMES = { 0: "Titan", 1: "Hunter", 2: "Warlock" };
-// DestinyComponentType: 100 Profiles, 200 Characters, 201 CharacterInventories,
-// 205 CharacterEquipment, 300 ItemInstances
-const COMPONENTS = "100,200,201,205,300";
+// DestinyComponentType: 100 Profiles, 200 Characters, 205 CharacterEquipment, 300 ItemInstances.
+// Only equipped gear is shown, so the (much larger) unequipped inventory is never requested.
+const COMPONENTS = "100,200,205,300";
 const LOOKUP_BUDGET_MS = 7000;
 
 // Look up manifest entities with limited concurrency, stopping when the time budget is spent.
@@ -70,7 +70,6 @@ module.exports = async (req, res) => {
     const characters = Object.values(prof.characters.data).map((c) => ({
       id: c.characterId, className: CLASS_NAMES[c.classType] || "Guardian", light: c.light,
       equipped: (prof.characterEquipment.data[c.characterId]?.items || []).map(toItem),
-      inventory: (prof.characterInventories?.data?.[c.characterId]?.items || []).map(toItem),
     })).sort((a, b) => a.className.localeCompare(b.className));
 
     // Reuse definitions from the snapshot the site already ships.
@@ -81,7 +80,7 @@ module.exports = async (req, res) => {
       items = shipped.defs?.items || {}; buckets = shipped.defs?.buckets || {};
     } catch { /* first run: look everything up */ }
 
-    const all = characters.flatMap((c) => [...c.equipped, ...c.inventory]);
+    const all = characters.flatMap((c) => c.equipped);
     const needItems = [...new Set(all.map((i) => i.hash))].filter((h) => !items[h]);
     const itemDefs = await lookup(client, "DestinyInventoryItemDefinition", needItems, deadline);
     for (const [h, d] of Object.entries(itemDefs)) {
@@ -96,13 +95,18 @@ module.exports = async (req, res) => {
     for (const [h, d] of Object.entries(bucketDefs)) buckets[h] = d.displayProperties?.name;
 
     const complete = [...new Set(all.map((i) => i.hash))].every((h) => items[h]);
+    // Send only the definitions the equipped gear actually uses.
+    const usedHashes = new Set(all.map((i) => i.hash));
+    const outItems = Object.fromEntries(Object.entries(items).filter(([h]) => usedHashes.has(Number(h))));
+    const usedBuckets = new Set(Object.values(outItems).map((d) => d.bucket));
+    const outBuckets = Object.fromEntries(Object.entries(buckets).filter(([h]) => usedBuckets.has(Number(h))));
     const t = telemetry();
     res.setHeader("Server-Timing", `total;dur=${t.serverMs}`);
     // Do not cache partial results so the next click can finish the job.
     res.setHeader("Cache-Control", complete ? "public, s-maxage=300, stale-while-revalidate=600" : "no-store");
     return res.status(200).json({
       fetchedAt: Date.now(), player: m.bungieGlobalDisplayName || name, complete,
-      characters, defs: { items, buckets }, telemetry: t,
+      characters, defs: { items: outItems, buckets: outBuckets }, telemetry: t,
     });
   } catch (e) {
     res.setHeader("Cache-Control", "no-store");

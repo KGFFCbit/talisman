@@ -41,7 +41,11 @@ function Clean([string]$s) {
   $s = $s -replace '\b(?:[0-9A-Fa-f]{2}[:-]){5}[0-9A-Fa-f]{2}\b', '~mac~'
   $s = $s -replace '\b(?:[0-9A-Fa-f]{1,4}:){3,7}[0-9A-Fa-f]{1,4}\b', '~ipv6~'
   $s = $s -replace '\b(\d{1,3}\.){3}\d{1,3}\b', 'x.x.x.x'
-  foreach ($x in @($env:USERNAME, $env:COMPUTERNAME, $env:USERDOMAIN, (Split-Path $env:USERPROFILE -Leaf))) {
+  # The PC's name becomes "kgffc"; user names become "~".
+  foreach ($x in @($env:COMPUTERNAME, $env:USERDOMAIN)) {
+    if ($x -and $x.Length -ge 3) { $s = $s -ireplace ('\b' + [regex]::Escape($x) + '\b'), 'kgffc' }
+  }
+  foreach ($x in @($env:USERNAME, (Split-Path $env:USERPROFILE -Leaf))) {
     if ($x -and $x.Length -ge 3) { $s = $s -ireplace ('\b' + [regex]::Escape($x) + '\b'), '~' }
   }
   if ($s.Length -gt 400) { $s = $s.Substring(0, 400) }

@@ -2,7 +2,7 @@
 // sets connect-src 'none', so even a bug could not send it anywhere. Nothing from the file is ever
 // put into innerHTML; every string goes through textContent.
 import { readFile, parseText, merge, FileError, at, clean, appName } from "./parse.js";
-import { rate, stat, LEVELS } from "./rate.js";
+import { rate, stat, LEVELS, isGpuReset } from "./rate.js";
 import { View, TimeChart, Gauge, meter, el, fmt, clockText } from "./charts.js";
 import { demoPlate } from "./demo.js";
 
@@ -14,9 +14,10 @@ let charts = [], view = null, playing = false;
 async function loadFiles(files) {
   busy(true);
   try {
+    const list = [...files].slice(0, 6); // copy now: the picker is cleared while we read
     const sets = [];
-    for (const file of [...files].slice(0, 6)) sets.push(parseText(await readFile(file), file.name));
-    show(merge(sets), clean([...files].map((f) => f.name).join(", "), 80));
+    for (const file of list) sets.push(parseText(await readFile(file), file.name));
+    show(merge(sets), clean(list.map((f) => f.name).join(", "), 80));
   } catch (e) { fail(e); } finally { busy(false); }
 }
 function loadText(text, name) {
@@ -210,18 +211,31 @@ function describe(e) {
   if ((p === "Display" && id === 4101) || /nvlddmkm|amdkmdag/.test(p)) return ["fail", "Graphics driver crashed or reset"];
   if (/^(disk|stornvme|storahci|Microsoft-Windows-Ntfs|volmgr)$/.test(p)) return [e.level <= 2 ? "fail" : "warn", p === "volmgr" ? "Crash dump could not be saved" : "Disk or storage problem"];
   if (p === "Application Error") return ["warn", `App crashed: ${appName(e.data.get("P0") || e.data.get("AppName")) || "an app"}`];
-  if (p === "Windows Error Reporting") return ["warn", /BlueScreen/.test(e.msg) ? "Blue screen report" : "Hardware hiccup (LiveKernelEvent)"];
+  if (p === "Windows Error Reporting") {
+    if (/BlueScreen/.test(e.msg)) return ["fail", "Blue screen report"];
+    const c = (e.data.get("P1") || "").toLowerCase();
+    const code = /^[0-9a-f]{1,8}$/.test(c) ? c : "?";
+    return ["warn", isGpuReset(e) ? `Graphics driver stopped responding, then recovered (LiveKernelEvent ${code})` : `Hardware hiccup reported (LiveKernelEvent ${code})`];
+  }
   return null;
 }
 function clues(ds) {
-  const rows = [];
-  for (const e of ds.events) { const d = describe(e); if (d) rows.push([e, ...d]); }
+  // Repeats fold into one row with a count; each crash (Kernel-Power 41 / 6008) keeps its own row.
+  const rows = [], groups = new Map();
+  for (const e of ds.events) {
+    const d = describe(e); if (!d) continue;
+    const k = /Kernel-Power$/.test(e.provider) || e.id === 6008 ? null : d[1];
+    const g = k && groups.get(k);
+    if (g) { g[0] = e; g[4]++; continue; }
+    const row = [e, d[0], d[1], e.t, 1]; rows.push(row); if (k) groups.set(k, row);
+  }
+  rows.sort((a, b) => a[0].t - b[0].t);
   const body = $("clues");
-  body.replaceChildren(...rows.slice(-150).reverse().map(([e, sev, what]) => {
+  body.replaceChildren(...rows.slice(-150).reverse().map(([e, sev, what, first, n]) => {
     const tr = el("tr", sev);
     const s = el("td"); s.append(el("span", `pill ${sev}`, SYM[sev]));
-    const w = el("td"); w.append(el("b", null, what), el("small", null, ` ${e.provider} ${e.id}`));
-    tr.append(s, el("td", "num", when(e.t)), w, el("td", "msg", e.msg || [...e.data].map(([k, v]) => `${k}=${v}`).join("; ")));
+    const w = el("td"); w.append(el("b", null, n > 1 ? `${what} ×${n}` : what), el("small", null, ` ${e.provider} ${e.id}`));
+    tr.append(s, el("td", "num", n > 1 ? `${when(first)} → ${when(e.t)}` : when(e.t)), w, el("td", "msg", e.msg || [...e.data].map(([k, v]) => `${k}=${v}`).join("; ")));
     return tr;
   }));
   if (!rows.length) { const tr = el("tr"); const td = el("td", null, ds.sources.has("Windows event log") ? "No crash clues in Windows' logs. Good news." : "This file has no Windows clues (use the plate file from 2-PLATE-IT)."); td.colSpan = 4; tr.append(td); body.append(tr); }

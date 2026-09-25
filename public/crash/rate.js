@@ -73,6 +73,12 @@ const clamp = (x) => Math.max(0, Math.min(1, x));
 const r0 = (x) => Math.round(x);
 const r2 = (x) => (Math.round(x * 100) / 100).toFixed(2);
 
+// Graphics driver timeouts: Display 4101, NVIDIA/AMD driver errors, and Windows' own hardware reports
+// (LiveKernelEvent 141 VIDEO_ENGINE_TIMEOUT, 117 VIDEO_TDR_TIMEOUT, 116 VIDEO_TDR_FAILURE).
+const GPU_LKE = new Set(["141", "117", "116"]);
+export const isGpuReset = (e) => (e.provider === "Display" && e.id === 4101) || /nvlddmkm|amdkmdag/.test(e.provider)
+  || (e.provider === "Windows Error Reporting" && e.data.get("EventName") === "LiveKernelEvent" && GPU_LKE.has((e.data.get("P1") || "").toLowerCase()));
+
 export function cpuLimit(name = "") {
   const n = name.toUpperCase();
   if (/9\d{3}X3D/.test(n)) return 95;
@@ -191,6 +197,8 @@ export function rate(ds) {
     if ((e.provider === "Display" && e.id === 4101) || /nvlddmkm|amdkmdag/.test(e.provider)) flag("fail", "The graphics driver crashed and restarted", "gpuDrv");
   }
   if (fatalInRec.length) flag("fail", "Windows logged a FATAL hardware error (WHEA 18)", "cpuTune");
+  const resets = ds.events.filter(isGpuReset).length;
+  if (resets) flag("warn", `Windows logged ${resets} graphics driver timeout${resets > 1 ? "s" : ""} in the last 14 days (it recovered each time). Worth a clean driver install`, "gpuDrv");
 
   // ---- the Crisp-o-Meter
   const load = Math.max(all("cpu_pct")?.p95 ?? 0, all("gpu_pct")?.p95 ?? 0);
@@ -244,7 +252,7 @@ function board(ds, crash, recorded, rec, tj) {
   if (bus) { add("ram", Math.min(3, 1 + bus), `${bus} memory-bus hardware error(s) (WHEA Bus/Interconnect): often an unstable EXPO/XMP RAM speed`); add("cpuTune", 1, null); }
   if (pcie) { add("gpuHw", 1, `${pcie} PCI Express link error(s): graphics card seating, slot or riser cable`); add("board", 1, null); }
   if (mem47) add("ram", 2, `${mem47} corrected memory error(s) (WHEA 47)`);
-  const tdr = count((e) => (e.provider === "Display" && e.id === 4101) || /nvlddmkm|amdkmdag/.test(e.provider) || (e.provider === "Windows Error Reporting" && /LiveKernelEvent/.test(e.msg)));
+  const tdr = count(isGpuReset);
   if (tdr) { add("gpuDrv", Math.min(4, 1 + tdr / 2), `${tdr} graphics driver crash/reset clue(s) in the Windows log`); add("gpuHw", 1, null); }
   const disk = count((e) => /^(disk|stornvme|storahci|Microsoft-Windows-Ntfs)$/.test(e.provider) && e.level <= 3);
   if (disk) add("disk", Math.min(4, 1 + disk / 2), `${disk} disk warning/error clue(s) in the Windows log`);

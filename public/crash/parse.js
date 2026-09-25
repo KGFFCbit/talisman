@@ -328,8 +328,13 @@ export function merge(sets) {
       for (const [k, v] of bag) if (!into.has(k) || into.get(k).t.length < v.t.length) into.set(k, v);
     }
   }
+  // Windows re-logs every queued error report each time it retries sending it (about every 4 hours), so a
+  // report is identified by its problem signature, not its timestamp: each real event is kept once, first seen.
   const seen = new Set();
-  ds.events = ds.events.filter((e) => { const k = `${e.t}|${e.provider}|${e.id}`; if (seen.has(k)) return false; seen.add(k); return true; }).sort((a, b) => a.t - b.t);
+  const key = (e) => (e.provider === "Windows Error Reporting" && e.data.has("P1")
+    ? `wer|${["EventName", "P1", "P2", "P3", "P5"].map((k) => e.data.get(k) || "").join("|")}`
+    : `${e.t}|${e.provider}|${e.id}`);
+  ds.events = ds.events.sort((a, b) => a.t - b.t).filter((e) => { const k = key(e); if (seen.has(k)) return false; seen.add(k); return true; });
   derive(ds);
   return ds;
 }

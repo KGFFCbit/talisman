@@ -14,7 +14,7 @@
 <meta property="og:title" content="Crash Kitchen FAQ: why does the PC keep switching off?">
 <meta property="og:description" content="Record it, plate it, drop it. The Crisp-o-Meter rates the session and lines up the crash suspects. Nothing is uploaded.">
 <meta property="og:url" content="https://kgffc.net/crash/faq.html">
-<meta property="og:image" content="https://kgffc.net/crash/img/03-verdict.webp">
+<meta property="og:image" content="https://kgffc.net/crash/img/06-demo-crash.webp">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="crash.css">
 </head>
@@ -60,7 +60,7 @@
     <h1>How the Crash Kitchen works</h1>
     <p class="lede">A PC in our house kept switching itself off. No blue screen, no warning: just dark, usually right as a game was loading, sometimes deep in Photoshop. The Crash Kitchen is how we catch it in the act. It is free, it installs nothing, and your file never leaves your computer.</p>
     <p class="faq-cta"><a class="cta-outline" href="/crash/">Open the Crash Kitchen</a> <a class="link-arrow" href="/crash/#demo=crash">Try the crash demo →</a></p>
-    <p class="hint">Every screenshot on this page is the built-in demo, made-up data shaped like a real sudden power-off.</p>
+    <p class="hint">Screenshots marked "Real data" are a 35-minute Destiny 2 session on our own PC. The ones marked "Demo data" are the built-in demo, a simulated sudden power-off.</p>
 
     <nav class="faq-toc" aria-label="Questions">
       <ol>
@@ -84,8 +84,8 @@
     <section id="what">
       <h2>What is it?</h2>
       <p>Two double-click files that record what your PC is doing about once a second, and a web page that turns the recording into a verdict. The Crisp-o-Meter rates how hard and hot the PC ran. If it crashed, you get a line-up of the most likely suspects with the evidence for each one and what to try first.</p>
-      <figure><img src="img/03-verdict.webp" width="1140" height="687" alt="The Crisp-o-Meter at 7, Gluttened, 100 out of 100: 'The PC crashed.' Below: 26 minutes recorded, peak CPU 78°C, peak graphics 72°C, lowest 12 V 11.44 V, 3 crashes in the log, and checks showing both 12-volt readings sagged while temperatures were fine." loading="lazy">
-        <figcaption>The verdict for a sudden power-off: Gluttened, with the 12-volt supply flagged and the temperatures cleared.</figcaption></figure>
+      <figure><img src="img/06-demo-crash.webp" width="1140" height="788" alt="Demo data: the Crisp-o-Meter at 7, Gluttened, 100 out of 100: 'The PC crashed.' Below: 26 minutes recorded, peak CPU 78°C, peak graphics 72°C, lowest 12 V 11.44 V, 3 crashes in the log, and checks showing both 12-volt readings sagged while temperatures were fine." loading="lazy">
+        <figcaption>Demo data: the verdict for a simulated sudden power-off. Gluttened, with the 12-volt supply flagged and the temperatures cleared.</figcaption></figure>
     </section>
 
     <section id="how">
@@ -114,15 +114,15 @@
         <li><b>Gluttened</b> It died: the PC crashed during the recording, or Windows logged a fatal hardware error.</li>
       </ol>
       <p>The score adds up how hard the PC worked (CPU and graphics load), how close it got to its temperature limits (it knows each CPU's limit, like 89°C for a Ryzen 7 7800X3D), and every warning it found. A healthy PC never scores Gluttened, however hard you push it.</p>
-      <figure><img src="img/07-healthy.webp" width="1140" height="806" alt="A healthy session: Crisp-o-Meter at 4, Cooked, 51 out of 100, 'Cooked through, perfectly', with every check marked Fine and the note 'Your hardware is awesome. Santa can put his feet up this year.'" loading="lazy">
-        <figcaption>A healthy gaming session lands on Cooked, and Santa stays home.</figcaption></figure>
+      <figure><img src="img/03-real-verdict.webp" width="1140" height="801" alt="A real 35-minute Destiny 2 session: Crisp-o-Meter at 3, Breaded, 26 out of 100, 'Real work at comfortable temperatures. This is a healthy PC.' Peak graphics 64°C and no crashes; CPU temperature and 12 V show 'not recorded', with notes explaining HWiNFO is needed to see them. 'Your hardware is awesome. Santa can put his feet up this year.'" loading="lazy">
+        <figcaption>Real data: 35 minutes of Destiny 2 on our own PC. Breaded, and it says plainly what it couldn't see. (Windows event details left out for privacy.)</figcaption></figure>
     </section>
 
     <section id="suspects">
       <h2>How does it pick the suspects?</h2>
       <p>Like a detective's points board. Each suspect (power supply, CPU overheating, graphics card, graphics driver, RAM and its EXPO/XMP speed, BIOS settings, motherboard, SSD, software) starts with points for the <em>kind</em> of crash. An instant power-off points at power; a freeze points at drivers and RAM; a blue screen's code points wherever that code usually points. Then the evidence adds points (the 12-volt supply sagged, the load jumped just before the end, the CPU hit its limit) and evidence against takes them away (the graphics card was cool, 72°C, in its last minute). Every point comes with its reason written out, so you can check our working.</p>
-      <figure><img src="img/04-suspects.webp" width="1140" height="792" alt="Suspect number 1: Power supply or its cables, 70% of the evidence, Strong lead, with eight reasons such as 'Load jumped from 29% to 100% just before it died, like a game loading in' and four things to try, ending with 'borrow a known-good power supply for a week.'" loading="lazy">
-        <figcaption>The top suspect, its share of the evidence, the reasons, and what to try.</figcaption></figure>
+      <figure><img src="img/07-demo-suspects.webp" width="1140" height="893" alt="Demo data: suspect number 1: Power supply or its cables, 70% of the evidence, Strong lead, with eight reasons such as 'Load jumped from 29% to 100% just before it died, like a game loading in' and four things to try, ending with 'borrow a known-good power supply for a week.'" loading="lazy">
+        <figcaption>Demo data: the top suspect, its share of the evidence, the reasons, and what to try.</figcaption></figure>
     </section>
 
     <section id="sure">
@@ -133,15 +133,15 @@
     <section id="replay">
       <h2>What is the replay for?</h2>
       <p>Watching the last minutes like a game replay. Six gauges and up to ten charts share one time cursor: press Play, drag the slider, or hover any chart. Red dashed lines are limits (like the CPU's temperature limit or the 11.40 V minimum for a 12-volt supply); the red "died" line is the crash.</p>
-      <figure><img src="img/05-replay.webp" width="1140" height="825" alt="The replay panel: gauges for CPU load, graphics load, CPU temperature, graphics hot spot, 12 V supply (11.45 V, LOW) and graphics power, then charts showing the load jumping to 100% and the 12-volt supply dropping toward 11.40 V right before the red 'died' line." loading="lazy">
-        <figcaption>The load jumps, the 12-volt supply sags, and then the "died" line.</figcaption></figure>
+      <figure><img src="img/04-real-replay.webp" width="1140" height="845" alt="The replay of a real Destiny 2 session, paused at its busiest moment: gauges read CPU 30%, graphics 73%, graphics 64°C and 175 W, all fine; the busiest app is destiny2; charts show load, graphics temperature, power and clock speeds rising when the game starts." loading="lazy">
+        <figcaption>Real data: the Destiny 2 session paused at its busiest moment. On a crash, a red "died" line marks the end.</figcaption></figure>
     </section>
 
     <section id="clues">
       <h2>Where do the crash clues come from?</h2>
       <p>Windows' own event log, which 2-PLATE-IT copies for the last 14 days: sudden restarts, blue screens and their codes, hardware errors (WHEA), graphics driver resets, disk errors, and apps that crashed. The page translates each into plain English. The raw source and ID sit next to it, for the grown-ups.</p>
-      <figure><img src="img/06-clues.webp" width="1140" height="594" alt="The crash clues table: three 'Restarted after a sudden power loss' rows in red, each paired with 'Windows noticed the last shutdown was unexpected', plus one Photoshop app crash." loading="lazy">
-        <figcaption>Three sudden power losses in ten days: a pattern, not a one-off.</figcaption></figure>
+      <figure><img src="img/05-demo-clues.webp" width="1140" height="685" alt="Demo data: the crash clues table: three 'Restarted after a sudden power loss' rows in red, each paired with 'Windows noticed the last shutdown was unexpected', plus one Photoshop app crash." loading="lazy">
+        <figcaption>Demo data: three sudden power losses in ten days, a pattern, not a one-off. Repeated reports fold into one row with a count.</figcaption></figure>
     </section>
 
     <section id="next">

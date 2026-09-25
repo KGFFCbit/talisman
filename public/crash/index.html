@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- Nothing leaves this page: no connect-src at all, scripts only from kgffc.net, fonts only from Google Fonts (site-wide). -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'; require-trusted-types-for 'script'; trusted-types 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Crash Kitchen: why does the PC keep switching off? — KGFFC</title>
+<meta name="description" content="Record your PC while you play, drop the file here, and the Crisp-o-Meter rates how cooked it got. If it crashed, see the most likely suspects and what to test next. Nothing is uploaded.">
+<link rel="canonical" href="https://kgffc.net/crash/">
+<link rel="icon" href="/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KGFFC">
+<meta property="og:title" content="Crash Kitchen: why does the PC keep switching off?">
+<meta property="og:description" content="Record it, plate it, drop it here. The Crisp-o-Meter rates the session and lines up the crash suspects. Nothing is uploaded.">
+<meta property="og:url" content="https://kgffc.net/crash/">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="crash.css">
+</head>
+<body>
+
+<header class="nav-mast">
+  <p class="mast-line">Est. 2026 · Anti-Gluten Talismans</p>
+  <a class="mast-brand" href="/">
+    <img class="mast-logo" src="/logo.png" alt="KGFFC emblem — a rooster circled by hand-lettered gold" width="128" height="128">
+    <span class="mast-name">KGFFC</span>
+  </a>
+  <nav class="mast-nav" aria-label="Primary">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/recipes.html">Recipes</a></li>
+      <li><a href="/allergy.html">Gluten Info</a></li>
+      <li><a href="/talismans.html">Talismans</a></li>
+      <li><a href="/inventory/">Inventory</a></li>
+      <li><a href="/status/">Status</a></li>
+      <li><a href="/crash/" aria-current="page">Crash Kitchen</a></li>
+    </ul>
+  </nav>
+  <details class="mast-menu">
+    <summary>Menu</summary>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/recipes.html">Recipes</a></li>
+      <li><a href="/allergy.html">Gluten Info</a></li>
+      <li><a href="/talismans.html">Talismans</a></li>
+      <li><a href="/inventory/">Inventory</a></li>
+      <li><a href="/status/">Status</a></li>
+      <li><a href="/crash/" aria-current="page">Crash Kitchen</a></li>
+    </ul>
+  </details>
+  <hr class="mast-rule double" aria-hidden="true">
+</header>
+
+<main>
+  <section class="container ck">
+    <p class="eyebrow">KGFFC · Crash Kitchen</p>
+    <h1>Why does the PC keep switching off?</h1>
+    <p class="lede">Record the PC while you play, drop the recording here, and the Crisp-o-Meter rates how cooked it got, from Brined to Gluttened. If it crashed, you get a line-up of the most likely suspects with the evidence for each, and what to test next.</p>
+
+    <ol class="recipe">
+      <li><b>Get the kit.</b> <span>Unzip it somewhere easy, like Documents.</span>
+        <span class="recipe-cta"><a class="cta-outline" href="kgffc-crash-kit.zip" download>Download the kit (.zip)</a> <a class="link-arrow" href="kit/kgffc-crash.ps1" download>Read the script first →</a></span></li>
+      <li><b>Start cooking.</b> <span>Double-click <code>1-START-COOKING</code>. Leave the black window open; you can minimise it.</span></li>
+      <li><b>Play until it dies.</b> <span>The game, Photoshop, whatever usually does it. If the PC switches off, turn it back on.</span></li>
+      <li><b>Plate it.</b> <span>Double-click <code>2-PLATE-IT</code>, then drop the <code>KGFFC-plate</code> file from your Desktop below.</span></li>
+    </ol>
+    <p class="hint">Extra Crispy mode: Windows can't see CPU temperature or voltages on its own. Turn on HWiNFO logging too (the README shows how) and the plate picks it up automatically.</p>
+
+    <div id="drop" class="drop">
+      <p class="drop-big">Drop your plate here</p>
+      <label class="cta-outline filebtn">Choose file <input id="file" type="file" multiple accept=".txt,.csv,text/plain,text/csv"></label>
+      <details class="paste"><summary>Or paste the text</summary>
+        <textarea id="pasteBox" rows="5" maxlength="20000000" spellcheck="false" autocomplete="off" aria-label="Paste the contents of your KGFFC plate file"></textarea>
+        <button id="pasteGo" class="cta-outline" type="button">Read pasted text</button>
+      </details>
+      <p class="demo">No recording yet? Try a demo: <button id="demoOk" type="button" class="linkish">healthy gaming session</button> · <button id="demoCrash" type="button" class="linkish">sudden power-off</button></p>
+      <p class="private">Your file never leaves your computer. This page reads it inside your browser and has no way to send it anywhere.</p>
+    </div>
+    <p id="err" class="err" role="alert" hidden></p>
+
+    <div id="results" hidden>
+      <div id="verdict" class="verdict" aria-live="polite">
+        <div id="dial" class="dial"></div>
+        <div class="vbody">
+          <p class="eyebrow" id="vEyebrow"></p>
+          <h2 id="vLevel"></h2>
+          <p class="vdetail" id="vLine"></p>
+          <p class="vmore" id="vMore"></p>
+        </div>
+        <ol id="ladder" class="ladder" aria-label="Crisp-o-Meter levels, least to most cooked"></ol>
+      </div>
+      <dl id="stats" class="stats"></dl>
+
+      <h2>What we checked</h2>
+      <ul id="flags" class="flags"></ul>
+      <div id="missingWrap" hidden>
+        <h3>What we couldn't see</h3>
+        <ul id="missing" class="missing"></ul>
+      </div>
+
+      <div id="suspectWrap" hidden>
+        <h2 id="suspectTitle">The suspects</h2>
+        <p class="hint" id="suspectHint"></p>
+        <ol id="suspects" class="suspects"></ol>
+      </div>
+      <p id="santa" class="santa"></p>
+
+      <div id="replayWrap" hidden>
+        <h2>Replay</h2>
+        <p class="hint">Press play to watch the session like a replay, drag across any chart to zoom in, and double-click to zoom back out. Red dashed lines are limits; red upright lines are crashes.</p>
+        <div class="panel">
+          <div id="gauges" class="gauges"></div>
+          <div class="replay-bar">
+            <button id="play" class="btn-dark" type="button">▶ Play</button>
+            <label>Speed <select id="speed"><option value="1">1×</option><option value="10" selected>10×</option><option value="60">60×</option><option value="300">300×</option></select></label>
+            <button id="toEnd" class="btn-dark" type="button">Last 5 minutes</button>
+            <button id="zoomOut" class="btn-dark" type="button">Whole session</button>
+            <input id="scrub" type="range" min="0" max="1000" value="1000" aria-label="Replay position">
+            <span id="clock" class="clock" aria-live="off"></span>
+          </div>
+          <p id="apps" class="apps"></p>
+          <div id="charts" class="charts"></div>
+        </div>
+      </div>
+
+      <h2 id="cluesTitle">Windows' own crash clues</h2>
+      <p class="hint">Straight from the Windows event log, newest first. Red rows are the serious ones.</p>
+      <div class="tablewrap"><table class="board"><thead><tr><th><span class="sr">Severity</span></th><th>When</th><th>What happened</th><th>Details</th></tr></thead><tbody id="clues"></tbody></table></div>
+
+      <div id="sysWrap" hidden>
+        <h2>The PC</h2>
+        <dl id="sys" class="sys"></dl>
+        <ul id="sysNotes" class="missing"></ul>
+      </div>
+    </div>
+
+    <h2 id="methodTitle">How a crash detective works</h2>
+    <ol class="method">
+      <li><b>Brine first.</b> Record ten boring minutes on the desktop. That's what "normal" looks like on this PC.</li>
+      <li><b>Catch it in the act.</b> Record while doing the thing that kills it. A crash we didn't record is only a rumour.</li>
+      <li><b>Start with suspect #1.</b> Change ONE thing from its "What to try" list. Write down what you changed and the date.</li>
+      <li><b>Record again.</b> Same game, same length. If it stops crashing for a week, you found it. If not, undo the change and try the next suspect.</li>
+      <li><b>Grown-ups do the insides.</b> Anything inside the case is switched off at the wall first. Never open a power supply: it can hurt you even when unplugged.</li>
+    </ol>
+
+    <p class="fine">The Crisp-o-Meter rates the recording, not the PC's soul. The suspect list is a ranking of evidence, not a diagnosis: it tells you what to test first. Privacy: the kit never records user names, PC names, IP addresses or serial numbers, and this page makes no network requests with your data (its security policy blocks them outright). Not affiliated with AMD, NVIDIA, Microsoft or the makers of HWiNFO.</p>
+  </section>
+</main>
+
+<footer class="foot-letter">
+  <p class="foot-letter__close">Yours, warded and frying,<br><span class="foot-letter__sign">— KGFFC</span></p>
+  <p class="foot-letter__links"><a href="/crash/faq.html">Crash Kitchen FAQ</a> · <a href="/feedback.html">Send feedback</a></p>
+  <p class="foot-letter__copy">© 2026 KGFFC.</p>
+</footer>
+
+<noscript><p class="container">The Crash Kitchen needs JavaScript. It runs entirely in your browser.</p></noscript>
+<script src="/js/main.js"></script>
+<script type="module" src="main.js"></script>
+</body>
+</html>

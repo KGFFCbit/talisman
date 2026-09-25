@@ -1,0 +1,41 @@
+# KGFFC Crash Kitchen - counter recipe
+# The same Windows performance counters PerfMon and WPA use. One line per thing we measure:
+#
+#   name | counter path | combine | scale
+#
+# combine: one = single value, sum / max / min = combine every instance (the _Total instance is skipped)
+# scale:   multiply the value (default 1). 0.00000095367431640625 turns bytes into MB.
+# Lines starting with # are ignored. Counters your PC doesn't have are skipped automatically.
+
+# ---- CPU: how hard, how fast, is something holding it back?
+cpu_pct          | \Processor Information(_Total)\% Processor Time        | one
+cpu_core_max     | \Processor Information(*)\% Processor Time             | max
+cpu_perf_pct     | \Processor Information(_Total)\% Processor Performance | one
+cpu_base_mhz     | \Processor Information(_Total)\Processor Frequency     | one
+cpu_limit_pct    | \Processor Information(_Total)\% Performance Limit     | one
+cpu_dpc_pct      | \Processor Information(_Total)\% DPC Time              | one
+cpu_irq_pct      | \Processor Information(_Total)\% Interrupt Time        | one
+cpu_queue        | \System\Processor Queue Length                         | one
+
+# ---- Memory (RAM)
+mem_avail_mb     | \Memory\Available MBytes                               | one
+mem_commit_pct   | \Memory\% Committed Bytes In Use                       | one
+mem_pages_sec    | \Memory\Pages/sec                                      | one
+mem_nonpaged_mb  | \Memory\Pool Nonpaged Bytes                            | one | 0.00000095367431640625
+
+# ---- Graphics card (works for NVIDIA, AMD and Intel)
+gpu_3d_pct       | \GPU Engine(*engtype_3D)\Utilization Percentage        | sum
+gpu_vram_mb      | \GPU Adapter Memory(*)\Dedicated Usage                 | max | 0.00000095367431640625
+
+# ---- Disks (IO)
+disk_read_mbs    | \PhysicalDisk(_Total)\Disk Read Bytes/sec              | one | 0.00000095367431640625
+disk_write_mbs   | \PhysicalDisk(_Total)\Disk Write Bytes/sec             | one | 0.00000095367431640625
+disk_idle_min    | \PhysicalDisk(*)\% Idle Time                           | min
+disk_latency_ms  | \PhysicalDisk(*)\Avg. Disk sec/Transfer                | max | 1000
+
+# ---- Network (throughput)
+net_rx_mbs       | \Network Interface(*)\Bytes Received/sec               | sum | 0.00000095367431640625
+net_tx_mbs       | \Network Interface(*)\Bytes Sent/sec                   | sum | 0.00000095367431640625
+
+# ---- Temperature Windows can see without extra software (motherboard ACPI zone, in Kelvin)
+acpi_temp_k      | \Thermal Zone Information(*)\Temperature               | max

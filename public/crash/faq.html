@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'; require-trusted-types-for 'script'; trusted-types 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Crash Kitchen FAQ: how it works — KGFFC</title>
+<meta name="description" content="How the KGFFC Crash Kitchen catches a PC that switches itself off: record, plate, drop, and read the Crisp-o-Meter and the suspect line-up. Nothing is uploaded.">
+<link rel="canonical" href="https://kgffc.net/crash/faq.html">
+<link rel="icon" href="/logo.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="KGFFC">
+<meta property="og:title" content="Crash Kitchen FAQ: why does the PC keep switching off?">
+<meta property="og:description" content="Record it, plate it, drop it. The Crisp-o-Meter rates the session and lines up the crash suspects. Nothing is uploaded.">
+<meta property="og:url" content="https://kgffc.net/crash/faq.html">
+<meta property="og:image" content="https://kgffc.net/crash/img/03-verdict.webp">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="crash.css">
+</head>
+<body>
+
+<header class="nav-mast">
+  <p class="mast-line">Est. 2026 · Anti-Gluten Talismans</p>
+  <a class="mast-brand" href="/">
+    <img class="mast-logo" src="/logo.png" alt="KGFFC emblem — a rooster circled by hand-lettered gold" width="128" height="128">
+    <span class="mast-name">KGFFC</span>
+  </a>
+  <nav class="mast-nav" aria-label="Primary">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/recipes.html">Recipes</a></li>
+      <li><a href="/allergy.html">Gluten Info</a></li>
+      <li><a href="/talismans.html">Talismans</a></li>
+      <li><a href="/inventory/">Inventory</a></li>
+      <li><a href="/status/">Status</a></li>
+      <li><a href="/crash/" aria-current="page">Crash Kitchen</a></li>
+    </ul>
+  </nav>
+  <details class="mast-menu">
+    <summary>Menu</summary>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/recipes.html">Recipes</a></li>
+      <li><a href="/allergy.html">Gluten Info</a></li>
+      <li><a href="/talismans.html">Talismans</a></li>
+      <li><a href="/inventory/">Inventory</a></li>
+      <li><a href="/status/">Status</a></li>
+      <li><a href="/crash/" aria-current="page">Crash Kitchen</a></li>
+    </ul>
+  </details>
+  <hr class="mast-rule double" aria-hidden="true">
+</header>
+
+<main>
+  <article class="container ck faq">
+    <p class="eyebrow">KGFFC · Crash Kitchen · FAQ</p>
+    <h1>How the Crash Kitchen works</h1>
+    <p class="lede">A PC in our house kept switching itself off. No blue screen, no warning: just dark, usually right as a game was loading, sometimes deep in Photoshop. The Crash Kitchen is how we catch it in the act. It is free, it installs nothing, and your file never leaves your computer.</p>
+    <p class="faq-cta"><a class="cta-outline" href="/crash/">Open the Crash Kitchen</a> <a class="link-arrow" href="/crash/#demo=crash">Try the crash demo →</a></p>
+    <p class="hint">Every screenshot on this page is the built-in demo, made-up data shaped like a real sudden power-off.</p>
+
+    <nav class="faq-toc" aria-label="Questions">
+      <ol>
+        <li><a href="#what">What is it?</a></li>
+        <li><a href="#how">How do I use it?</a></li>
+        <li><a href="#meter">What do Brined … Gluttened mean?</a></li>
+        <li><a href="#suspects">How does it pick the suspects?</a></li>
+        <li><a href="#sure">Can it tell me exactly what's broken?</a></li>
+        <li><a href="#replay">What is the replay for?</a></li>
+        <li><a href="#clues">Where do the crash clues come from?</a></li>
+        <li><a href="#next">What should I do next?</a></li>
+        <li><a href="#privacy">Is my file uploaded? What's in it?</a></li>
+        <li><a href="#smartscreen">Windows says "Windows protected your PC". Is it safe?</a></li>
+        <li><a href="#temps">Why can't it see my CPU temperature?</a></li>
+        <li><a href="#admin">Does it need admin rights?</a></li>
+        <li><a href="#wpa">What about Windows Performance Analyzer (WPA)?</a></li>
+        <li><a href="#feedback">Something's wrong, or I have an idea</a></li>
+      </ol>
+    </nav>
+
+    <section id="what">
+      <h2>What is it?</h2>
+      <p>Two double-click files that record what your PC is doing about once a second, and a web page that turns the recording into a verdict. The Crisp-o-Meter rates how hard and hot the PC ran. If it crashed, you get a line-up of the most likely suspects with the evidence for each one and what to try first.</p>
+      <figure><img src="img/03-verdict.webp" width="1140" height="687" alt="The Crisp-o-Meter at 7, Gluttened, 100 out of 100: 'The PC crashed.' Below: 26 minutes recorded, peak CPU 78°C, peak graphics 72°C, lowest 12 V 11.44 V, 3 crashes in the log, and checks showing both 12-volt readings sagged while temperatures were fine." loading="lazy">
+        <figcaption>The verdict for a sudden power-off: Gluttened, with the 12-volt supply flagged and the temperatures cleared.</figcaption></figure>
+    </section>
+
+    <section id="how">
+      <h2>How do I use it?</h2>
+      <ol class="method">
+        <li><b>Get the kit.</b> Download the .zip from the <a href="/crash/">Crash Kitchen</a> and unzip it somewhere easy, like Documents.</li>
+        <li><b>Start cooking.</b> Double-click <code>1-START-COOKING</code>. A black window opens: leave it open (minimising is fine). It forces every line onto the disk, so a sudden power cut loses a second at most.</li>
+        <li><b>Play until it dies.</b> The game, Photoshop, whatever usually does it. If the PC switches off, turn it back on.</li>
+        <li><b>Plate it.</b> Double-click <code>2-PLATE-IT</code>. It adds Windows' own crash records and puts one <code>KGFFC-plate</code> text file on your Desktop. Drop that file on the page.</li>
+      </ol>
+      <figure><img src="img/01-recipe.webp" width="1140" height="758" alt="The Crash Kitchen page: 'Why does the PC keep switching off?' with four numbered steps: Get the kit, Start cooking, Play until it dies, Plate it." loading="lazy">
+        <figcaption>The four steps, as they appear on the page.</figcaption></figure>
+      <figure><img src="img/02-drop.webp" width="1140" height="335" alt="The drop zone: 'Drop your plate here', a Choose file button, an option to paste the text, two demo links, and the line 'Your file never leaves your computer.'" loading="lazy">
+        <figcaption>Drop the file, choose it, or paste it. No recording yet? Try a demo.</figcaption></figure>
+    </section>
+
+    <section id="meter">
+      <h2>What do Brined … Gluttened mean?</h2>
+      <ol class="levels">
+        <li><b>Brined</b> Barely warm. Your hardware is awesome, or you didn't actually play anything.</li>
+        <li><b>Floured</b> Light work, cool temperatures.</li>
+        <li><b>Breaded</b> Real work at comfortable temperatures. A healthy PC.</li>
+        <li><b>Cooked</b> Worked hard and stayed inside every safe limit. What a good gaming session looks like.</li>
+        <li><b>Fried</b> Close to its limits. Nothing broke, but read the amber items.</li>
+        <li><b>Double Extra Crispy</b> Something went past a safe limit. Fix the red items before they turn into a crash.</li>
+        <li><b>Gluttened</b> It died: the PC crashed during the recording, or Windows logged a fatal hardware error.</li>
+      </ol>
+      <p>The score adds up how hard the PC worked (CPU and graphics load), how close it got to its temperature limits (it knows each CPU's limit, like 89°C for a Ryzen 7 7800X3D), and every warning it found. A healthy PC never scores Gluttened, however hard you push it.</p>
+      <figure><img src="img/07-healthy.webp" width="1140" height="806" alt="A healthy session: Crisp-o-Meter at 4, Cooked, 51 out of 100, 'Cooked through, perfectly', with every check marked Fine and the note 'Your hardware is awesome. Santa can put his feet up this year.'" loading="lazy">
+        <figcaption>A healthy gaming session lands on Cooked, and Santa stays home.</figcaption></figure>
+    </section>
+
+    <section id="suspects">
+      <h2>How does it pick the suspects?</h2>
+      <p>Like a detective's points board. Each suspect (power supply, CPU overheating, graphics card, graphics driver, RAM and its EXPO/XMP speed, BIOS settings, motherboard, SSD, software) starts with points for the <em>kind</em> of crash. An instant power-off points at power; a freeze points at drivers and RAM; a blue screen's code points wherever that code usually points. Then the evidence adds points (the 12-volt supply sagged, the load jumped just before the end, the CPU hit its limit) and evidence against takes them away (the graphics card was cool, 72°C, in its last minute). Every point comes with its reason written out, so you can check our working.</p>
+      <figure><img src="img/04-suspects.webp" width="1140" height="792" alt="Suspect number 1: Power supply or its cables, 70% of the evidence, Strong lead, with eight reasons such as 'Load jumped from 29% to 100% just before it died, like a game loading in' and four things to try, ending with 'borrow a known-good power supply for a week.'" loading="lazy">
+        <figcaption>The top suspect, its share of the evidence, the reasons, and what to try.</figcaption></figure>
+    </section>
+
+    <section id="sure">
+      <h2>Can it tell me exactly what's broken?</h2>
+      <p>No, and it won't pretend to. A recording can show that the power supply's voltage sagged the moment a game loaded; it can't open the power supply. The suspect list is the most sensible <em>order to test in</em>. The test itself is yours: change one thing, record again, and see if the crashes stop.</p>
+    </section>
+
+    <section id="replay">
+      <h2>What is the replay for?</h2>
+      <p>Watching the last minutes like a game replay. Six gauges and up to ten charts share one time cursor: press Play, drag the slider, or hover any chart. Red dashed lines are limits (like the CPU's temperature limit or the 11.40 V minimum for a 12-volt supply); the red "died" line is the crash.</p>
+      <figure><img src="img/05-replay.webp" width="1140" height="825" alt="The replay panel: gauges for CPU load, graphics load, CPU temperature, graphics hot spot, 12 V supply (11.45 V, LOW) and graphics power, then charts showing the load jumping to 100% and the 12-volt supply dropping toward 11.40 V right before the red 'died' line." loading="lazy">
+        <figcaption>The load jumps, the 12-volt supply sags, and then the "died" line.</figcaption></figure>
+    </section>
+
+    <section id="clues">
+      <h2>Where do the crash clues come from?</h2>
+      <p>Windows' own event log, which 2-PLATE-IT copies for the last 14 days: sudden restarts, blue screens and their codes, hardware errors (WHEA), graphics driver resets, disk errors, and apps that crashed. The page translates each into plain English. The raw source and ID sit next to it, for the grown-ups.</p>
+      <figure><img src="img/06-clues.webp" width="1140" height="594" alt="The crash clues table: three 'Restarted after a sudden power loss' rows in red, each paired with 'Windows noticed the last shutdown was unexpected', plus one Photoshop app crash." loading="lazy">
+        <figcaption>Three sudden power losses in ten days: a pattern, not a one-off.</figcaption></figure>
+    </section>
+
+    <section id="next">
+      <h2>What should I do next?</h2>
+      <figure><img src="img/08-method.webp" width="1140" height="393" alt="How a crash detective works: 1. Brine first, 2. Catch it in the act, 3. Start with suspect number 1, 4. Record again, 5. Grown-ups do the insides." loading="lazy"></figure>
+      <p>Anything inside the case is a grown-up job, switched off at the wall first. Never open a power supply: it can hurt you even when it's unplugged.</p>
+    </section>
+
+    <section id="privacy">
+      <h2>Is my file uploaded? What's in it?</h2>
+      <p>Nothing is uploaded. The page reads your file inside your browser, and its security policy blocks it from sending anything anywhere. The file holds your hardware model names, driver versions, Windows crash events, the numbers we recorded, and which app was busiest each second (app names only). It never contains your user name, PC name, IP address, serial numbers or folder paths. Open it in Notepad and check before you share it with anyone.</p>
+    </section>
+
+    <section id="smartscreen">
+      <h2>Windows says "Windows protected your PC". Is it safe?</h2>
+      <p>Windows says that about every script downloaded from the internet. Only run a kit <em>you</em> downloaded from kgffc.net/crash yourself, never one someone sent you. The kit is plain text: open <code>kgffc-crash.ps1</code> in Notepad and read it first, or ask a grown-up to. Then choose "More info" and "Run anyway".</p>
+    </section>
+
+    <section id="temps">
+      <h2>Why can't it see my CPU temperature?</h2>
+      <p>Windows can't read CPU temperature or voltages by itself. The free program HWiNFO can (only download it from hwinfo.com). Turn on its logging, save the log next to the kit's .bat files as <code>hwinfo.csv</code>, and 2-PLATE-IT adds it automatically. We call it Extra Crispy mode. It's the best way to rule overheating and the power supply in or out. NVIDIA graphics cards report their own temperature and power without HWiNFO.</p>
+    </section>
+
+    <section id="admin">
+      <h2>Does it need admin rights?</h2>
+      <p>No. It installs nothing and runs as a normal user. The only thing Windows hides from normal users is the count of saved crash dumps, and the file says so instead of guessing.</p>
+    </section>
+
+    <section id="wpa">
+      <h2>What about Windows Performance Analyzer (WPA)?</h2>
+      <p>The recipe file, <code>kgffc-counters.txt</code>, uses the same Windows performance counters as PerfMon and WPA, and the recording is a plain CSV. For a deep dive, record an ETW trace with <code>wpr -start GeneralProfile -filemode</code> and open it in WPA.</p>
+    </section>
+
+    <section id="feedback">
+      <h2>Something's wrong, or I have an idea</h2>
+      <p>Please tell us. A suspect that turned out wrong is the most useful feedback there is. <a class="link-arrow" href="/feedback.html">Send feedback →</a></p>
+    </section>
+  </article>
+</main>
+
+<footer class="foot-letter">
+  <p class="foot-letter__close">Yours, warded and frying,<br><span class="foot-letter__sign">— KGFFC</span></p>
+  <p class="foot-letter__links"><a href="/crash/faq.html">Crash Kitchen FAQ</a> · <a href="/feedback.html">Send feedback</a></p>
+  <p class="foot-letter__copy">© 2026 KGFFC.</p>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>

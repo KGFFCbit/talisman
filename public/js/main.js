@@ -1,5 +1,5 @@
-// Days-since counter — epoch is the site's launch day, no server needed.
-const GLUTTEN_EPOCH = new Date("2026-08-16T00:00:00");
+// Days-since counter — epoch is the last gluttening (reset 2026-09-20), no server needed.
+const GLUTTEN_EPOCH = new Date("2026-09-20T00:00:00");
 
 function daysSince(date) {
   const ms = Date.now() - date.getTime();

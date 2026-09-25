@@ -28,3 +28,18 @@ looks like an IP address survives. The dashboard applies the same check when a f
 | `agent/` | Backend: local trace agent (this folder) |
 | `public/status/` | Front end: the dashboard. Renders only; measures nothing itself |
 | `public/shared/` | Front end: refresh + telemetry plumbing shared by the inventory and dashboard pages |
+
+# Crash Kitchen kit
+
+The PC-crash recorder behind https://kgffc.net/crash/ lives in `public/crash/kit/` (served as-is so
+people can read the script before running it). `1-START-COOKING.bat` records Windows performance
+counters (recipe: `kgffc-counters.txt`) plus NVIDIA stats about once a second, forcing every line to
+disk so a sudden power-off loses at most a second. `2-PLATE-IT.bat` adds system info and Windows'
+crash events (Kernel-Power 41, WHEA, bugchecks, driver resets, disk errors) and an optional HWiNFO
+log into one text file for the page. No admin rights; user name, PC name and IPs are scrubbed.
+
+After changing anything in the kit, rebuild the download:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File agent\build-crash-kit.ps1
+```

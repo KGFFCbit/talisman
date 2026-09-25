@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; connect-src 'none'; form-action 'self'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Feedback — KGFFC</title>
+<meta name="description" content="Tell KGFFC what worked, what broke, or what the Crash Kitchen got wrong. It goes straight to a real person.">
+<link rel="canonical" href="https://kgffc.net/feedback.html">
+<link rel="icon" href="/logo.png">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/feedback.css">
+</head>
+<body>
+
+<header class="nav-mast">
+  <p class="mast-line">Est. 2026 · Anti-Gluten Talismans</p>
+  <a class="mast-brand" href="/">
+    <img class="mast-logo" src="/logo.png" alt="KGFFC emblem — a rooster circled by hand-lettered gold" width="128" height="128">
+    <span class="mast-name">KGFFC</span>
+  </a>
+  <nav class="mast-nav" aria-label="Primary">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/recipes.html">Recipes</a></li>
+      <li><a href="/allergy.html">Gluten Info</a></li>
+      <li><a href="/talismans.html">Talismans</a></li>
+      <li><a href="/inventory/">Inventory</a></li>
+      <li><a href="/status/">Status</a></li>
+      <li><a href="/crash/">Crash Kitchen</a></li>
+    </ul>
+  </nav>
+  <details class="mast-menu">
+    <summary>Menu</summary>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/recipes.html">Recipes</a></li>
+      <li><a href="/allergy.html">Gluten Info</a></li>
+      <li><a href="/talismans.html">Talismans</a></li>
+      <li><a href="/inventory/">Inventory</a></li>
+      <li><a href="/status/">Status</a></li>
+      <li><a href="/crash/">Crash Kitchen</a></li>
+    </ul>
+  </details>
+  <hr class="mast-rule double" aria-hidden="true">
+</header>
+
+<main>
+  <section class="container fb">
+    <p class="eyebrow">KGFFC · Feedback</p>
+    <h1>Tell us what you think.</h1>
+    <p class="lede">Something broke, a suspect was wrong, a recipe needs fixing, or you just want to say hi. This goes straight to a real person at KGFFC. We read everything.</p>
+
+    <p id="sent" class="formnote ok" role="status">✓ Thanks! Your note is on its way.</p>
+    <p id="invalid" class="formnote warn" role="alert">! Please write at least a sentence (10 characters or more) in the message box.</p>
+    <p id="slow" class="formnote warn" role="alert">! That's a lot of notes from here in the last hour. Please try again later.</p>
+    <p id="error" class="formnote fail" role="alert">✕ Sorry, that didn't send. Please try again in a few minutes.</p>
+
+    <form class="fbform" method="post" action="/api/feedback">
+      <label>What is it about?
+        <select name="topic">
+          <option value="crash">Crash Kitchen</option>
+          <option value="recipes">Recipes</option>
+          <option value="talismans">Talismans</option>
+          <option value="website">The website</option>
+          <option value="other">Something else</option>
+        </select>
+      </label>
+      <label>Your message <span class="req">(required)</span>
+        <textarea name="message" rows="7" minlength="10" maxlength="4000" required></textarea>
+      </label>
+      <label>Your name <span class="opt">(optional)</span>
+        <input name="name" maxlength="80" autocomplete="name">
+      </label>
+      <label>Your email <span class="opt">(optional, only if you want a reply)</span>
+        <input name="email" type="email" maxlength="120" autocomplete="email">
+      </label>
+      <!-- Spam trap: people never see or fill this field; bots do. -->
+      <label class="trap" aria-hidden="true">Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label>
+      <button class="cta-outline" type="submit">Send feedback</button>
+      <p class="hint">Under 13? Ask a grown-up before you share your email. Please don't paste a whole Crash Kitchen plate here: tell us what the page said instead.</p>
+    </form>
+  </section>
+</main>
+
+<footer class="foot-letter">
+  <p class="foot-letter__close">Yours, warded and frying,<br><span class="foot-letter__sign">— KGFFC</span></p>
+  <p class="foot-letter__links"><a href="/crash/faq.html">Crash Kitchen FAQ</a> · <a href="/feedback.html">Send feedback</a></p>
+  <p class="foot-letter__copy">© 2026 KGFFC.</p>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>

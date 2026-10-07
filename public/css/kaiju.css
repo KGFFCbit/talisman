@@ -1,0 +1,125 @@
+/* Kaiju feature + gallery. Additive: uses the tokens and type from style.css / tokens.css. */
+
+.feature-kaiju__grid,
+.kaiju-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: var(--space-2xl);
+  align-items: center;
+}
+.feature-kaiju__art,
+.kaiju-hero__art {
+  display: block;
+  width: 100%;
+  max-width: 34rem;
+  justify-self: center;
+}
+.feature-kaiju__art img,
+.kaiju-hero__art img {
+  width: 100%;
+  height: auto;
+  border: var(--rule-hair) solid var(--color-ink);
+  box-shadow: 0.5rem 0.5rem 0 var(--color-accent);
+}
+.feature-kaiju h2 { font-size: var(--text-3xl); margin-bottom: var(--space-md); }
+.kaiju-hero h1 { font-size: var(--text-display); margin-bottom: var(--space-md); }
+.kaiju-lede { font-size: var(--text-md); margin-bottom: var(--space-md); }
+.kaiju-credit {
+  margin-top: var(--space-md);
+  font-family: var(--font-outlier);
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.kaiju-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md) var(--space-lg);
+  align-items: center;
+  margin-top: var(--space-lg);
+}
+.feature-kaiju__text > p + p,
+.kaiju-hero__text > p + p { margin-top: var(--space-md); }
+
+@media (max-width: 52rem) {
+  .feature-kaiju__grid,
+  .kaiju-hero__grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-xl); }
+}
+
+/* video */
+.kaiju-video { max-width: 24rem; margin-inline: auto; }
+.kaiju-video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  background: #000;
+  border: var(--rule-hair) solid var(--color-ink);
+}
+.kaiju-video figcaption { margin-top: var(--space-sm); font-size: var(--text-sm); color: var(--color-ink-2); }
+
+/* galleries */
+.gallery-grid {
+  list-style: none;
+  margin: var(--space-lg) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-md);
+}
+.gallery-grid--final { grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); }
+.gallery-grid--tall  { grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr)); }
+.gallery-grid--wide  { grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); }
+.gallery-grid figure { margin: 0; }
+.gallery-grid a {
+  display: block;
+  overflow: hidden;
+  border: var(--rule-hair) solid var(--color-rule);
+  background: var(--color-paper-2);
+}
+.gallery-grid img {
+  width: 100%;
+  height: auto;
+  transition: transform var(--dur-short) var(--ease-out);
+}
+.gallery-grid a:hover img,
+.gallery-grid a:focus-visible img { transform: scale(1.03); }
+.gallery-cap { margin-top: var(--space-2xs); font-size: var(--text-sm); color: var(--color-ink-2); }
+.round { margin-top: var(--space-2xl); }
+.round h3 { font-size: var(--text-lg); }
+.round-note { margin-top: var(--space-2xs); color: var(--color-ink-2); max-width: var(--measure); }
+
+/* lightbox (progressive enhancement: without JS the thumbnails just open the full image) */
+.lightbox {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  max-width: min(96vw, 70rem);
+  max-height: 96vh;
+  overflow: visible;
+}
+.lightbox::backdrop { background: rgb(12 10 8 / 0.88); }
+.lightbox figure { margin: 0; text-align: center; }
+.lightbox img { max-width: 100%; max-height: 82vh; width: auto; height: auto; margin-inline: auto; }
+.lightbox figcaption { margin-top: var(--space-sm); color: var(--color-paper); font-size: var(--text-sm); }
+.lightbox button {
+  position: absolute;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  border: var(--rule-hair) solid var(--color-ink);
+  width: 2.75rem;
+  height: 2.75rem;
+  font: inherit;
+  font-size: var(--text-lg);
+  line-height: 1;
+  cursor: pointer;
+}
+.lightbox button:hover { background: var(--color-accent); }
+.lightbox [data-close] { top: -0.5rem; right: -0.5rem; }
+.lightbox [data-prev]  { top: 40%; left: -0.5rem; }
+.lightbox [data-next]  { top: 40%; right: -0.5rem; }
+@media (max-width: 40rem) {
+  .lightbox [data-close] { top: 0.25rem; right: 0.25rem; }
+  .lightbox [data-prev]  { left: 0.25rem; }
+  .lightbox [data-next]  { right: 0.25rem; }
+}

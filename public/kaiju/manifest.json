@@ -1,0 +1,372 @@
+[
+ {
+  "group": "final",
+  "key": "hero",
+  "w": 1080,
+  "h": 1350,
+  "tw": 460,
+  "th": 575,
+  "caption": "Ukiyo-e, with real title boxes",
+  "alt": "Ukiyo-e style poster: a giant armored honey badger standing waist-deep in Tokyo Bay under a red sun, with Tokyo Tower and a red suspension bridge behind it. Title boxes read Honey Badger Kaiju, Tokyo Bay."
+ },
+ {
+  "group": "final",
+  "key": "final-vector",
+  "w": 1080,
+  "h": 1350,
+  "tw": 460,
+  "th": 575,
+  "caption": "Black and red vector",
+  "alt": "Black-background vector poster: armored honey badger kaiju rising from stylized waves in front of a huge red sun, Tokyo Tower at left."
+ },
+ {
+  "group": "final",
+  "key": "final-vintage",
+  "w": 1080,
+  "h": 1350,
+  "tw": 460,
+  "th": 575,
+  "caption": "Vintage, red sun",
+  "alt": "Vintage-style poster: armored honey badger kaiju in front of a red sun, with a red tower and suspension bridge behind choppy blue waves."
+ },
+ {
+  "group": "final",
+  "key": "final-vintage-orange",
+  "w": 1080,
+  "h": 1350,
+  "tw": 460,
+  "th": 575,
+  "caption": "Vintage, orange",
+  "alt": "Vintage-style poster on an orange background: armored kaiju rising from waves, small wooden boats in the foreground."
+ },
+ {
+  "group": "final",
+  "key": "final-ukiyoe-cherry",
+  "w": 1080,
+  "h": 1350,
+  "tw": 460,
+  "th": 575,
+  "caption": "Ukiyo-e, cherry blossoms",
+  "alt": "Ukiyo-e style poster: armored honey badger kaiju beside Tokyo Tower and a red bridge, cherry blossoms drifting over blue waves."
+ },
+ {
+  "group": "r1",
+  "key": "r1-1",
+  "w": 1344,
+  "h": 645,
+  "tw": 520,
+  "th": 250,
+  "caption": "Take 1",
+  "alt": "Round 1 draft, take 1: cinematic night render of an armored honey badger kaiju in Tokyo Bay."
+ },
+ {
+  "group": "r1",
+  "key": "r1-2",
+  "w": 1344,
+  "h": 622,
+  "tw": 520,
+  "th": 241,
+  "caption": "Take 2",
+  "alt": "Round 1 draft, take 2: cinematic night render of an armored honey badger kaiju in Tokyo Bay."
+ },
+ {
+  "group": "r1",
+  "key": "r1-3",
+  "w": 1344,
+  "h": 662,
+  "tw": 520,
+  "th": 256,
+  "caption": "Take 3",
+  "alt": "Round 1 draft, take 3: cinematic night render of an armored honey badger kaiju in Tokyo Bay."
+ },
+ {
+  "group": "r1",
+  "key": "r1-4",
+  "w": 1344,
+  "h": 625,
+  "tw": 520,
+  "th": 242,
+  "caption": "Take 4",
+  "alt": "Round 1 draft, take 4: cinematic night render of an armored honey badger kaiju in Tokyo Bay."
+ },
+ {
+  "group": "r2",
+  "key": "r2-1",
+  "w": 1344,
+  "h": 704,
+  "tw": 520,
+  "th": 272,
+  "caption": "Take 1",
+  "alt": "Round 2 draft, take 1: cinematic render of an armored honey badger kaiju with Tokyo landmarks behind it."
+ },
+ {
+  "group": "r2",
+  "key": "r2-2",
+  "w": 1344,
+  "h": 662,
+  "tw": 520,
+  "th": 256,
+  "caption": "Take 2",
+  "alt": "Round 2 draft, take 2: cinematic render of an armored honey badger kaiju with Tokyo landmarks behind it."
+ },
+ {
+  "group": "r2",
+  "key": "r2-3",
+  "w": 1344,
+  "h": 645,
+  "tw": 520,
+  "th": 250,
+  "caption": "Take 3",
+  "alt": "Round 2 draft, take 3: cinematic render of an armored honey badger kaiju with Tokyo landmarks behind it."
+ },
+ {
+  "group": "r2",
+  "key": "r2-4",
+  "w": 1344,
+  "h": 704,
+  "tw": 520,
+  "th": 272,
+  "caption": "Take 4",
+  "alt": "Round 2 draft, take 4: cinematic render of an armored honey badger kaiju with Tokyo landmarks behind it."
+ },
+ {
+  "group": "r2",
+  "key": "r2-5",
+  "w": 1344,
+  "h": 704,
+  "tw": 520,
+  "th": 272,
+  "caption": "Take 5",
+  "alt": "Round 2 draft, take 5: cinematic render of an armored honey badger kaiju with Tokyo landmarks behind it."
+ },
+ {
+  "group": "r2",
+  "key": "r2-6",
+  "w": 1344,
+  "h": 649,
+  "tw": 520,
+  "th": 251,
+  "caption": "Take 6",
+  "alt": "Round 2 draft, take 6: cinematic render of an armored honey badger kaiju with Tokyo landmarks behind it."
+ },
+ {
+  "group": "r2",
+  "key": "r2-7",
+  "w": 1344,
+  "h": 607,
+  "tw": 520,
+  "th": 235,
+  "caption": "Take 7",
+  "alt": "Round 2 draft, take 7: cinematic render of an armored honey badger kaiju with Tokyo landmarks behind it."
+ },
+ {
+  "group": "r2",
+  "key": "r2-8",
+  "w": 1344,
+  "h": 704,
+  "tw": 520,
+  "th": 272,
+  "caption": "Take 8",
+  "alt": "Round 2 draft, take 8: cinematic render of an armored honey badger kaiju with Tokyo landmarks behind it."
+ },
+ {
+  "group": "r3",
+  "key": "r3-a1",
+  "w": 1024,
+  "h": 1280,
+  "tw": 460,
+  "th": 575,
+  "caption": "Vintage 1",
+  "alt": "Round 3 draft, vintage paper poster, take 1: armored honey badger kaiju standing in waves in front of a red sun."
+ },
+ {
+  "group": "r3",
+  "key": "r3-a2",
+  "w": 1024,
+  "h": 1280,
+  "tw": 460,
+  "th": 575,
+  "caption": "Vintage 2",
+  "alt": "Round 3 draft, vintage paper poster, take 2: armored honey badger kaiju standing in waves in front of a red sun."
+ },
+ {
+  "group": "r3",
+  "key": "r3-a3",
+  "w": 1024,
+  "h": 1280,
+  "tw": 460,
+  "th": 575,
+  "caption": "Vintage 3",
+  "alt": "Round 3 draft, vintage paper poster, take 3: armored honey badger kaiju standing in waves in front of a red sun."
+ },
+ {
+  "group": "r3",
+  "key": "r3-a4",
+  "w": 1024,
+  "h": 1280,
+  "tw": 460,
+  "th": 575,
+  "caption": "Vintage 4",
+  "alt": "Round 3 draft, vintage paper poster, take 4: armored honey badger kaiju standing in waves in front of a red sun."
+ },
+ {
+  "group": "r3",
+  "key": "r3-b1",
+  "w": 1024,
+  "h": 1280,
+  "tw": 460,
+  "th": 575,
+  "caption": "Ukiyo-e 1",
+  "alt": "Round 3 draft, ukiyo-e print, take 1: armored honey badger kaiju standing in waves in front of a red sun."
+ },
+ {
+  "group": "r3",
+  "key": "r3-b2",
+  "w": 1024,
+  "h": 1280,
+  "tw": 460,
+  "th": 575,
+  "caption": "Ukiyo-e 2",
+  "alt": "Round 3 draft, ukiyo-e print, take 2: armored honey badger kaiju standing in waves in front of a red sun."
+ },
+ {
+  "group": "r3",
+  "key": "r3-b3",
+  "w": 1024,
+  "h": 1280,
+  "tw": 460,
+  "th": 575,
+  "caption": "Ukiyo-e 3",
+  "alt": "Round 3 draft, ukiyo-e print, take 3: armored honey badger kaiju standing in waves in front of a red sun."
+ },
+ {
+  "group": "r3",
+  "key": "r3-b4",
+  "w": 1024,
+  "h": 1280,
+  "tw": 460,
+  "th": 575,
+  "caption": "Ukiyo-e 4",
+  "alt": "Round 3 draft, ukiyo-e print, take 4: armored honey badger kaiju standing in waves in front of a red sun."
+ },
+ {
+  "group": "r3",
+  "key": "r3-c1",
+  "w": 1024,
+  "h": 1280,
+  "tw": 460,
+  "th": 575,
+  "caption": "Vector 1",
+  "alt": "Round 3 draft, bold black and red vector poster, take 1: armored honey badger kaiju standing in waves in front of a red sun."
+ },
+ {
+  "group": "r3",
+  "key": "r3-c2",
+  "w": 1024,
+  "h": 1280,
+  "tw": 460,
+  "th": 575,
+  "caption": "Vector 2",
+  "alt": "Round 3 draft, bold black and red vector poster, take 2: armored honey badger kaiju standing in waves in front of a red sun."
+ },
+ {
+  "group": "r3",
+  "key": "r3-c3",
+  "w": 1024,
+  "h": 1280,
+  "tw": 460,
+  "th": 575,
+  "caption": "Vector 3",
+  "alt": "Round 3 draft, bold black and red vector poster, take 3: armored honey badger kaiju standing in waves in front of a red sun."
+ },
+ {
+  "group": "r3",
+  "key": "r3-c4",
+  "w": 1024,
+  "h": 1280,
+  "tw": 460,
+  "th": 575,
+  "caption": "Vector 4",
+  "alt": "Round 3 draft, bold black and red vector poster, take 4: armored honey badger kaiju standing in waves in front of a red sun."
+ },
+ {
+  "group": "r4",
+  "key": "r4-x1",
+  "w": 1024,
+  "h": 1280,
+  "tw": 460,
+  "th": 575,
+  "caption": "Two-arms 1",
+  "alt": "Round 4 draft, ukiyo-e redraw (two-arms prompt), take 1: armored honey badger kaiju in Great Wave style swells."
+ },
+ {
+  "group": "r4",
+  "key": "r4-x2",
+  "w": 1024,
+  "h": 1280,
+  "tw": 460,
+  "th": 575,
+  "caption": "Two-arms 2",
+  "alt": "Round 4 draft, ukiyo-e redraw (two-arms prompt), take 2: armored honey badger kaiju in Great Wave style swells."
+ },
+ {
+  "group": "r4",
+  "key": "r4-x3",
+  "w": 1024,
+  "h": 1280,
+  "tw": 460,
+  "th": 575,
+  "caption": "Two-arms 3",
+  "alt": "Round 4 draft, ukiyo-e redraw (two-arms prompt), take 3: armored honey badger kaiju in Great Wave style swells."
+ },
+ {
+  "group": "r4",
+  "key": "r4-x4",
+  "w": 1024,
+  "h": 1280,
+  "tw": 460,
+  "th": 575,
+  "caption": "Two-arms 4",
+  "alt": "Round 4 draft, ukiyo-e redraw (two-arms prompt), take 4: armored honey badger kaiju in Great Wave style swells."
+ },
+ {
+  "group": "r4",
+  "key": "r4-y1",
+  "w": 1024,
+  "h": 1280,
+  "tw": 460,
+  "th": 575,
+  "caption": "One-arm 1",
+  "alt": "Round 4 draft, ukiyo-e redraw (one-arm prompt), take 1: armored honey badger kaiju in Great Wave style swells."
+ },
+ {
+  "group": "r4",
+  "key": "r4-y2",
+  "w": 1024,
+  "h": 1280,
+  "tw": 460,
+  "th": 575,
+  "caption": "One-arm 2",
+  "alt": "Round 4 draft, ukiyo-e redraw (one-arm prompt), take 2: armored honey badger kaiju in Great Wave style swells."
+ },
+ {
+  "group": "r4",
+  "key": "r4-y3",
+  "w": 1024,
+  "h": 1280,
+  "tw": 460,
+  "th": 575,
+  "caption": "One-arm 3",
+  "alt": "Round 4 draft, ukiyo-e redraw (one-arm prompt), take 3: armored honey badger kaiju in Great Wave style swells."
+ },
+ {
+  "group": "r4",
+  "key": "r4-y4",
+  "w": 1024,
+  "h": 1280,
+  "tw": 460,
+  "th": 575,
+  "caption": "One-arm 4",
+  "alt": "Round 4 draft, ukiyo-e redraw (one-arm prompt), take 4: armored honey badger kaiju in Great Wave style swells."
+ }
+]
